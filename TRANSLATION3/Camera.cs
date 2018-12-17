@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TRANSLATION3
+{
+    class Camera
+    {
+        private Player target;
+        private Point location;
+        private FollowMode followMode = FollowMode.GLUED;
+
+        public enum FollowMode
+        {
+            GLUED,
+            STEADY,
+            FIXED
+        }
+
+        public Camera(FollowMode followMode)
+        {
+            this.followMode = followMode;
+        }
+
+        public void follow()
+        {
+            switch (followMode)
+            {
+                case FollowMode.GLUED:
+                    location = target.getLocation();
+                    break;
+                case FollowMode.FIXED:
+                    break;
+                case FollowMode.STEADY:
+                    Point t = target.getLocation();
+
+                    location.X += Math.Sign(t.X - location.X) * (int)Math.Ceiling(Math.Sqrt(Math.Abs(location.X - t.X)));
+                    location.Y += Math.Sign(t.Y - location.Y) * (int)Math.Ceiling(Math.Sqrt(Math.Abs(location.Y - t.Y)));
+
+                    break;
+            }
+        }
+
+        public void setTarget(Player target)
+        {
+            this.target = target;
+            this.location = new Point(target.getLocation().X, target.getLocation().Y);
+        }
+
+        public Point getLocation()
+        {
+            return location;
+        }
+
+        public Point getTargetLocation()
+        {
+            return target.getLocation();
+        }
+    }
+}
