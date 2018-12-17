@@ -61,6 +61,105 @@ namespace TRANSLATION3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2 1
+        ///
+        ///480 500 200
+        ///800 300 200
+        ///
+        ///PUSH 6 NONE 1
+        ///.
+        /// </summary>
+        internal static string classic0 {
+            get {
+                return ResourceManager.GetString("classic0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4 2
+        ///
+        ///640 500 200
+        ///320 400 200
+        ///960 300 200
+        ///640 200 200
+        ///
+        ///PUSH 10 NONE 3
+        ///PUSH 6 NONE 2
+        ///.
+        /// </summary>
+        internal static string classic1 {
+            get {
+                return ResourceManager.GetString("classic1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 1
+        ///
+        ///320 400 200
+        ///960 400 200
+        ///
+        ///MOVE -10 NONE 1
+        ///.
+        /// </summary>
+        internal static string classic2 {
+            get {
+                return ResourceManager.GetString("classic2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4 3
+        ///
+        ///640 500 200
+        ///640 200 200
+        ///320 300 200
+        ///960 300 200
+        ///
+        ///PUSH 10 NONE 2
+        ///MOVE 6 NONE 3
+        ///PUSH 10 NONE 1
+        ///.
+        /// </summary>
+        internal static string classic3 {
+            get {
+                return ResourceManager.GetString("classic3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 1
+        ///
+        ///320 500 200
+        ///960 300 400
+        ///
+        ///DECAY 12 NONE 1
+        ///.
+        /// </summary>
+        internal static string classic4 {
+            get {
+                return ResourceManager.GetString("classic4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4 1
+        ///
+        ///640 500 200
+        ///640 200 200
+        ///280 300 140
+        ///880 400 140
+        ///
+        ///FLEE 6 NONE 1
+        ///.
+        /// </summary>
+        internal static string classic5 {
+            get {
+                return ResourceManager.GetString("classic5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap lowercase_vigilant_2_boldface {

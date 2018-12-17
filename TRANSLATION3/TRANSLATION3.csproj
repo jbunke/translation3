@@ -59,6 +59,11 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Render.cs" />
     <Compile Include="SavedLevels.cs" />
     <Compile Include="Sentry.cs" />
@@ -67,14 +72,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,6 +99,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\uppercase_vigilant_2_boldface.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic5.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

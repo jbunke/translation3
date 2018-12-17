@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,12 @@ namespace TRANSLATION3
                 players = new Player[] { new Player() };
             }
             
+            if (id.Substring(0, 7) == "classic")
+            {
+                String file = "../../Resources/" + id + ".txt";
+                return readFromFile(file, players, main);
+            }
+
             switch (id)
             {
                 case "staircase1":
@@ -63,9 +70,77 @@ namespace TRANSLATION3
                         new Sentry(Sentry.Type.PULL, 12)};
                     key = new int[] { 1, 3, 4, 5, 7, 8 };
                     break;
+                case "Take Flight":
+                    platforms = new Platform[] {
+                        new Platform(new Point(1100, 1250), 100),
+                        new Platform(new Point(700, 1150), 200),
+                        new Platform(new Point(2000, 1000), 150) };
+                    sentries = new Sentry[] {
+                        new Sentry(Sentry.Type.GRAV_DOUBLE, 10),
+                        new Sentry(Sentry.Type.DECAY, 14)};
+                    key = new int[] { 1, 2 };
+                    break;
+                default:
+                    return readFromFile(id, players, main);
             }
 
             return new Level(players, platforms, sentries, key, Camera.FollowMode.STEADY, main);
+        }
+
+        public static Level readFromFile(String file, Player[] players, main main)
+        {
+            string[] lines = File.ReadAllLines(file);
+            int platformc = Int32.Parse(
+                lines[0].Substring(0, lines[0].IndexOf(" ")));
+            int sentryc = Int32.Parse(
+                lines[0].Substring(lines[0].IndexOf(" ") + 1));
+            Platform[] platforms = new Platform[platformc];
+            Sentry[] sentries = new Sentry[sentryc];
+            int[] key = new int[sentryc];
+
+            int l = 2;
+
+            for (int i = 0; i < platformc; i++)
+            {
+                string line = lines[l + i];
+
+                int x = Int32.Parse(line.Substring(0, line.IndexOf(" ")));
+                line = line.Substring(line.IndexOf(" ") + 1);
+                int y = Int32.Parse(line.Substring(0, line.IndexOf(" ")));
+                line = line.Substring(line.IndexOf(" ") + 1);
+                int w = Int32.Parse(line);
+                platforms[i] = new Platform(new Point(x, y), w);
+            }
+
+            l += platformc + 1;
+
+            for (int i = 0; i < sentryc; i++)
+            {
+                string line = lines[l + i];
+
+                Enum.TryParse(line.Substring(0, line.IndexOf(" ")),
+                    out Sentry.Type type);
+                line = line.Substring(line.IndexOf(" ") + 1);
+                int speed = Int32.Parse(line.Substring(0, line.IndexOf(" ")));
+                line = line.Substring(line.IndexOf(" ") + 1);
+                Enum.TryParse(line.Substring(0, line.IndexOf(" ")),
+                    out Sentry.Type secondary);
+
+                if (type == Sentry.Type.SPAWN)
+                {
+                    sentries[i] = new Sentry(type, speed, secondary);
+                } else
+                {
+                    sentries[i] = new Sentry(type, speed);
+                }
+
+                line = line.Substring(line.IndexOf(" ") + 1);
+                
+                key[i] = Int32.Parse(line);
+            }
+                
+            return new Level(players, platforms, sentries,
+                key, Camera.FollowMode.STEADY, main);
         }
     }
 }

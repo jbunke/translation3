@@ -26,7 +26,9 @@ namespace TRANSLATION3
         private int playerc = 1;
         private Level level;
 
-        private List<String> campaign = new List<String>() { "behemoth", "staircase1" };
+        private List<String> campaign =
+            new List<String>() { "classic0", "classic1", "classic2",
+                "classic3", "classic4", "classic5", "Take Flight" };
         private int campaignIndex = 0;
 
         public main()
@@ -39,6 +41,15 @@ namespace TRANSLATION3
         private void main_Load(object sender, EventArgs e)
         {
             this.Location = new Point(10, 10);
+
+            // CLASSIC CAMPAIGN TEST
+            campaign = new List<String>();
+
+            for (int i = 0; i < 6; i++)
+            {
+                campaign.Add("classic" + i);
+            }
+
             generateLevel();
         }
 
