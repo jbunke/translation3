@@ -50,6 +50,7 @@ namespace TRANSLATION3
             // CAMPAIGN TEST
             campaign = new List<String>();
 
+            campaign.Add("main35");
             for (int i = 0; i < 16; i++)
             {
                 campaign.Add("classic" + i);

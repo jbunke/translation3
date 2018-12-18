@@ -293,7 +293,10 @@ namespace TRANSLATION3
                         // SPAWN LOGIC
                         if (count == 0 && children.Count < 5)
                         {
-                            Sentry child = new Sentry(secondary, 8);
+                            Random sp = new Random(Guid.NewGuid().GetHashCode());
+                            int childSpeed = sp.Next(1, 8) * 2;
+
+                            Sentry child = new Sentry(secondary, childSpeed);
                             children.Add(child);
                             level.addSentry(child);
                             int i = 0;

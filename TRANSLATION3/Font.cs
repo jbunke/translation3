@@ -14,13 +14,14 @@ namespace TRANSLATION3
                 Resources.uppercase_vigilant_2_boldface,
                 Resources.lowercase_vigilant_2_boldface,
                 Resources.numbers_vigilant_2_boldface,
-                Resources.symbols_vigilant_2_boldface);
+                Resources.symbols_vigilant_2_boldface,
+                Resources.symbols2_vigilant_2_boldface);
 
         private Bitmap[] glyphs = new Bitmap[128];
         private String name;
 
         public Font(String name, Bitmap uppercase, Bitmap lowercase, 
-            Bitmap numbers, Bitmap symbols)
+            Bitmap numbers, Bitmap symbols, Bitmap symbols2)
         {
             for (int i = 0; i < 128; i++)
             {
@@ -32,6 +33,7 @@ namespace TRANSLATION3
             generate(lowercase, 97, 26); // lowercase
             generate(numbers, 48, 10); // numbers
             generate(symbols, 33, 15); // symbols
+            generate(symbols2, 58, 7);
 
             // SPACE CHAR
             glyphs[32] = new Bitmap(32, glyphs[65].Height);

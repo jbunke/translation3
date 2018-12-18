@@ -170,5 +170,11 @@
   <ItemGroup>
     <None Include="Resources\main100.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\symbols2_vigilant_2_boldface.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main35.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

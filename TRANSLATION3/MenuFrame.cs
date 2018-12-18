@@ -35,6 +35,16 @@ namespace TRANSLATION3
                     new MenuObject(true, "SETTINGS", 4, new Point(640, 360),
                         MenuObject.Task.SET_PAUSE, "settings-pause", main),
                     new MenuObject(true, "QUIT", 4, new Point(640, 460),
+                        MenuObject.Task.SET_PAUSE, "are-you-sure", main) };
+                    return new MenuFrame(pauseObjs, main);
+                case "are-you-sure":
+                    pauseObjs = new MenuObject[] {
+                    new MenuObject(false, "Are you sure you want to quit?",
+                        4, new Point(640, 310),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "BACK", 4, new Point(540, 410),
+                        MenuObject.Task.SET_PAUSE, "pause", main),
+                    new MenuObject(true, "YES", 4, new Point(740, 410),
                         MenuObject.Task.CLOSE, null, main) };
                     return new MenuFrame(pauseObjs, main);
                 case "settings-pause":
@@ -48,17 +58,17 @@ namespace TRANSLATION3
                         MenuObject.Task.NULL, null, main),
                     new MenuObject(false, stgs.getFollowMode().ToString(), 4, 
                         new Point(640, 280), MenuObject.Task.NULL, null, main),
-                    new MenuObject(true, "LAST", 2,
+                    new MenuObject(true, "<", 4,
                         new Point(480, 280), MenuObject.Task.SWITCH_FOLLOW, "-1", main),
-                    new MenuObject(true, "NEXT", 2,
+                    new MenuObject(true, ">", 4,
                         new Point(800, 280), MenuObject.Task.SWITCH_FOLLOW, "1", main),
                     new MenuObject(false, "CONTROL MODE", 4, new Point(640, 360),
                         MenuObject.Task.NULL, null, main),
                     new MenuObject(false, stgs.getControlMode().ToString(), 4,
                         new Point(640, 400), MenuObject.Task.NULL, null, main),
-                    new MenuObject(true, "LAST", 2, new Point(480, 400),
+                    new MenuObject(true, "<", 4, new Point(480, 400),
                         MenuObject.Task.SWITCH_CONTROLS, null, main),
-                    new MenuObject(true, "NEXT", 2, new Point(800, 400),
+                    new MenuObject(true, ">", 4, new Point(800, 400),
                         MenuObject.Task.SWITCH_CONTROLS, null, main) };
                     return new MenuFrame(pauseObjs, main);
                 default:

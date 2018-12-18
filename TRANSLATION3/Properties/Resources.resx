@@ -184,11 +184,17 @@
   <data name="main3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main3.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="main35" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main35.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="main50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main50.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="numbers_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\numbers_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="symbols2_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\symbols2_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="symbols_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\symbols_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

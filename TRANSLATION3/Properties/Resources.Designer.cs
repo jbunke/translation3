@@ -396,7 +396,7 @@ namespace TRANSLATION3.Properties {
         ///600 800 200
         ///600 1000 200
         ///600 1200 200
-        ///6000 1400 200
+        ///600 1400 200
         ///1000 600 200
         ///1000 800 200
         ///1000 1200 200
@@ -450,6 +450,23 @@ namespace TRANSLATION3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 3 2
+        ///
+        ///1000 1000 100
+        ///600 1000 250
+        ///1400 1000 250
+        ///
+        ///RANDOM 10 NONE 1
+        ///RANDOM -10 NONE 2
+        ///.
+        /// </summary>
+        internal static string main35 {
+            get {
+                return ResourceManager.GetString("main35", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 4 2
         ///
         ///1000 1000 100
@@ -483,6 +500,16 @@ namespace TRANSLATION3.Properties {
         internal static System.Drawing.Bitmap symbols_vigilant_2_boldface {
             get {
                 object obj = ResourceManager.GetObject("symbols_vigilant_2_boldface", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap symbols2_vigilant_2_boldface {
+            get {
+                object obj = ResourceManager.GetObject("symbols2_vigilant_2_boldface", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
