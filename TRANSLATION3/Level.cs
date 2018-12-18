@@ -104,13 +104,18 @@ namespace TRANSLATION3
                 // SETUP
                 Point c = camera.getLocation();
                 Point o = new Point(640 - c.X, 360 - c.Y);
+                bool z = camera.isZoomedOut();
+                int d = 1;
+                if (z)
+                    d = 2;
 
                 // Platforms
                 foreach (Platform platform in platforms)
                 {
                     g.DrawImage(Render.platform(platform),
-                        o.X + platform.getLocation().X - (int)(platform.getWidth() / 2),
-                        o.Y + platform.getLocation().Y - 10);
+                        640 + (((o.X + platform.getLocation().X - (int)(platform.getWidth() / 2)) - 640) / d),
+                        360 + (((o.Y + platform.getLocation().Y - 10) - 360) / d),
+                        platform.getWidth() / d, 20 / d);
                 }
 
                 // Sentries
@@ -130,25 +135,29 @@ namespace TRANSLATION3
                             g.FillRectangle(new SolidBrush(
                                 Color.FromArgb(a,
                                 Render.sentryColor(sentry))),
-                                0, o.Y + s.Y - 7, o.X + s.X - 10, 14);
+                                0, 360 + (((o.Y + s.Y - 7) - 360) / d), 
+                                640 + (((o.X + s.X - 10) - 640) / d), 14 / d);
                         } else
                         {
                             g.FillRectangle(new SolidBrush(
                                 Color.FromArgb(a,
                                 Render.sentryColor(sentry))),
-                                o.X + s.X + 10, o.Y + s.Y - 7,
-                                1280 - (o.X + s.X - 10), 14);
+                                640 + (((o.X + s.X + 10) - 640) / d),
+                                360 + (((o.Y + s.Y - 7) - 360) / d),
+                                1280 - (640 + (((o.X + s.X - 10) - 640) / d)), 14 / d);
                         }
                     } else if (sentry.isAlive())
                     {
                         g.FillEllipse(new SolidBrush(
                             Color.FromArgb(100,
                             Render.sentryColor(sentry))),
-                            o.X + s.X - 20, o.Y + s.Y - 20, 40, 40);
+                            640 + (((o.X + s.X - 20) - 640) / d),
+                            360 + (((o.Y + s.Y - 20) - 360) / d), 40 / d, 40 / d);
                     }
 
                     g.DrawImage(Render.sentry(sentry),
-                        o.X + s.X - 10, o.Y + s.Y - 10);
+                        640 + (((o.X + s.X - 10) - 640) / d),
+                        360 + (((o.Y + s.Y - 10) - 360) / d), 20 / d, 20 / d);
 
                     if (sentry.getType() == Sentry.Type.SPAWN && sentry.isAlive())
                     {
@@ -156,7 +165,8 @@ namespace TRANSLATION3
                         {
                             Sentry pretend = new Sentry(sentry.getSecondary(), 0);
                             g.DrawImage(Render.sentry(pretend),
-                            o.X + s.X - 10, o.Y + s.Y - 10);
+                            640 + (((o.X + s.X - 10) - 640) / d),
+                            360 + (((o.Y + s.Y - 10) - 360) / d));
                         }
                     }
                 }
@@ -169,19 +179,22 @@ namespace TRANSLATION3
 
                     // saved location
                     g.FillRectangle(new SolidBrush(Color.FromArgb(100, 155, 0, 0)),
-                        o.X + sl.X - 5, o.Y + sl.Y - 5, 10, 10);
+                        640 + (((o.X + sl.X - 5) - 640) / d),
+                        360 + (((o.Y + sl.Y - 5) - 360) / d), 10 / d, 10 / d);
 
                     // teleportation shadow
                     if (player.getTelePhase() > 0)
                     {
                         g.FillRectangle(new SolidBrush(Color.FromArgb(100, 255, 0, 0)),
-                            o.X + l.X - 5 + (5 * player.getDirection() *
-                                player.getTelePhase() * player.getSpeed()),
-                            o.Y + l.Y - 5, 10, 10);
+                            640 + (((o.X + l.X - 5 + (5 * player.getDirection() *
+                                player.getTelePhase() * player.getSpeed())) - 640) / d),
+                            360 + (((o.Y + l.Y - 5) - 360) / d), 10 / d, 10 / d);
                     }
 
                     // location
-                    g.DrawImage(Render.player(), o.X + l.X - 10, o.Y + l.Y - 10);
+                    g.DrawImage(Render.player(),
+                        640 + (((o.X + l.X - 10) - 640) / d),
+                        360 + (((o.Y + l.Y - 10) - 360) / d), 20 / d, 20 / d);
                 }
             }
 
@@ -253,6 +266,11 @@ namespace TRANSLATION3
         public List<Player> getPlayers()
         {
             return players;
+        }
+
+        public Camera getCamera()
+        {
+            return camera;
         }
     }
 }

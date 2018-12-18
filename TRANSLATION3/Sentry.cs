@@ -207,14 +207,23 @@ namespace TRANSLATION3
                             int seesY = sees.getLocation().Y;
 
                             List<Player> players = level.getPlayers();
+                            List<Sentry> sentries = level.getSentries();
                             foreach (Player p in players)
                             {
                                 p.setY(-1 * p.getLocation().Y);
+                                p.setSY(-1 * p.getSaveLocation().Y);
+                                p.mulGAcceleration(-1);
                             }
 
                             foreach (Platform p in platforms)
                             {
                                 p.setY(-1 * p.getLocation().Y);
+                            }
+
+                            foreach (Sentry s in sentries)
+                            {
+                                s.location.Y *= -1;
+                                s.location.Y -= 40;
                             }
 
                             int o = seesY - sees.getLocation().Y;
@@ -222,11 +231,17 @@ namespace TRANSLATION3
                             foreach (Player p in players)
                             {
                                 p.moveY(o);
+                                p.moveSY(o);
                             }
 
                             foreach (Platform p in platforms)
                             {
                                 p.moveY(o);
+                            }
+
+                            foreach (Sentry s in sentries)
+                            {
+                                s.location.Y += o;
                             }
 
                             break;

@@ -28,12 +28,6 @@ namespace TRANSLATION3
                 players = new Player[] { new Player() };
             }
             
-            if (id.Substring(0, 7) == "classic")
-            {
-                String file = "../../Resources/" + id + ".txt";
-                return readFromFile(file, players, main);
-            }
-
             switch (id)
             {
                 case "staircase1":
@@ -81,7 +75,8 @@ namespace TRANSLATION3
                     key = new int[] { 1, 2 };
                     break;
                 default:
-                    return readFromFile(id, players, main);
+                    String file = "../../Resources/" + id + ".txt";
+                    return readFromFile(file, players, main);
             }
 
             return new Level(players, platforms, sentries, key, Camera.FollowMode.STEADY, main);

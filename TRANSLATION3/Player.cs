@@ -18,8 +18,8 @@ namespace TRANSLATION3
         private Point saveLocation;
 
         public Keys[] controls = new Keys[] {Keys.W, Keys.S, Keys.A,
-            Keys.D, Keys.Q, Keys.E, Keys.Space, Keys.Escape};
-        // {0 JUMP, 1 DROP, 2 LEFT, 3 RIGHT, 4 SAVE, 5 LOAD, 6 TELEPORT, 7 PAUSE}
+            Keys.D, Keys.Q, Keys.E, Keys.Space, Keys.Z, Keys.Escape};
+        // {0 JUMP, 1 DROP, 2 LEFT, 3 RIGHT, 4 SAVE, 5 LOAD, 6 TELEPORT, 7 ZOOM, 8 PAUSE}
 
         private bool isLeft;
         private bool isRight;
@@ -38,7 +38,7 @@ namespace TRANSLATION3
                 case "NUMPAD":
                     controls = new Keys[] {Keys.NumPad8, Keys.NumPad5,
                         Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Keys.NumPad9,
-                        Keys.NumPad0, Keys.Escape};
+                        Keys.NumPad0, Keys.NumPad1, Keys.Escape};
                     break;
             }
         }
@@ -118,6 +118,11 @@ namespace TRANSLATION3
                 {
                     location = saveLocation;
                 }
+
+                if (e.KeyCode == controls[7])
+                {
+                    level.getCamera().switchZoom();
+                }
             }
         }
 
@@ -159,6 +164,11 @@ namespace TRANSLATION3
             location.Y += inc;
         }
 
+        public void moveSY(int inc)
+        {
+            saveLocation.Y += inc;
+        }
+
         public void changeGAcceleration(int inc)
         {
             gAcceleration += inc;
@@ -172,6 +182,11 @@ namespace TRANSLATION3
         public void setY(int y)
         {
             location.Y = y;
+        }
+
+        public void setSY(int y)
+        {
+            saveLocation.Y = y;
         }
 
         public Point getLocation()

@@ -118,5 +118,50 @@
   <ItemGroup>
     <None Include="Resources\classic5.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main50.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main0.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic9.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic10.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic11.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic12.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic13.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic14.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\classic15.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

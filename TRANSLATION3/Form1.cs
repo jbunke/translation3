@@ -42,13 +42,14 @@ namespace TRANSLATION3
         {
             this.Location = new Point(10, 10);
 
-            // CLASSIC CAMPAIGN TEST
+            // CAMPAIGN TEST
             campaign = new List<String>();
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 16; i++)
             {
                 campaign.Add("classic" + i);
             }
+            campaign.Add("main50");
 
             generateLevel();
         }

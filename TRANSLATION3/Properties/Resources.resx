@@ -124,6 +124,24 @@
   <data name="classic1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\classic1.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="classic10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic10.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="classic11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic11.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="classic12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic12.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="classic13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic13.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="classic14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic14.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="classic15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic15.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="classic2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\classic2.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
@@ -136,8 +154,35 @@
   <data name="classic5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\classic5.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="classic6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic6.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="classic7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic7.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="classic8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic8.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="classic9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\classic9.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="lowercase_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lowercase_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="main0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main0.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main1.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main2.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main3.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main50.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="numbers_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\numbers_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
