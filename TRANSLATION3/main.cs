@@ -20,6 +20,7 @@ namespace TRANSLATION3
         private int playerc = 1;
 
         // TODO: pause
+        private String pauseScreen;
         private MenuFrame pauseFrame;
 
         private String levelId;
@@ -39,7 +40,8 @@ namespace TRANSLATION3
             this.Location = new Point(10, 10);
 
             // PAUSE CONTEXT
-            pauseFrame = MenuFrame.fromString("pause", this);
+            pauseScreen = "pause";
+            pauseFrame = MenuFrame.fromString(pauseScreen, this);
 
             // APPLY SETTINGS
             gameSettings = GameSettings.defaultSettings();
@@ -161,8 +163,7 @@ namespace TRANSLATION3
         {
             this.mode = Mode.PAUSE;
 
-            canvas = pauseFrame.render();
-            pictureBox1.Image = canvas;
+            setPauseFrame("pause");
         }
 
         public void unpause()
@@ -181,9 +182,28 @@ namespace TRANSLATION3
             return level.render();
         }
 
+        public Level getLevel()
+        {
+            return level;
+        }
+
         public GameSettings getSettings()
         {
             return gameSettings;
+        }
+
+        public void setPauseFrame(String s)
+        {
+            pauseScreen = s;
+            refreshPauseFrame();
+        }
+
+        public void refreshPauseFrame()
+        {
+            pauseFrame = MenuFrame.fromString(pauseScreen, this);
+
+            canvas = pauseFrame.render();
+            pictureBox1.Image = canvas;
         }
     }
 }

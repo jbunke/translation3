@@ -59,5 +59,20 @@ namespace TRANSLATION3
         {
             return followMode;
         }
+
+        public void switchFollowMode(int change)
+        {
+            int i = (int)followMode + change;
+            i %= 3;
+            if (i < 0)
+                i += 3;
+
+            followMode = (Camera.FollowMode)i;
+        }
+
+        public void switchControlMode()
+        {
+            controlMode = (ControlMode)(1 - (int)controlMode);
+        }
     }
 }

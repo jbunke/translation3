@@ -26,6 +26,12 @@ namespace TRANSLATION3
             this.followMode = followMode;
         }
 
+        public Camera(FollowMode followMode, Player target)
+        {
+            this.followMode = followMode;
+            setTarget(target);
+        }
+
         public void follow()
         {
             switch (followMode)

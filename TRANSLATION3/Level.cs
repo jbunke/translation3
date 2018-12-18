@@ -228,12 +228,17 @@ namespace TRANSLATION3
                 l = Math.Min(platform.getLocation().Y, l);
             }
 
-            foreach (Player player in players)
+            for (int i = 0; i < players.Count; i++)
             {
-                int p = player.getLocation().Y;
+                int p = players.ElementAt(i).getLocation().Y;
 
                 if (p < u + 1000 && p > l - 1000)
+                {
                     return false;
+                } else if (i == 0 && players.Count > 1)
+                {
+                    camera.setTarget(players.ElementAt(1));
+                }
             }
             return true;
         }
@@ -271,6 +276,11 @@ namespace TRANSLATION3
         public List<Player> getPlayers()
         {
             return players;
+        }
+
+        public void setCamera(Camera.FollowMode followMode)
+        {
+            camera = new Camera(followMode, players[0]);
         }
 
         public Camera getCamera()

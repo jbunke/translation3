@@ -23,8 +23,9 @@ namespace TRANSLATION3
 
             if (playerc == 2)
             {
-                players = new Player[] { new Player(),
-                    new Player(GameSettings.ControlMode.NUMPAD) };
+                players = new Player[] { new Player(main.getSettings().getControlMode()),
+                    new Player((GameSettings.ControlMode)(1 - 
+                    (int)main.getSettings().getControlMode())) };
             } else
             {
                 players = new Player[] { new Player(main.getSettings().getControlMode()) };

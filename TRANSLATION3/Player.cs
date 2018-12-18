@@ -33,6 +33,11 @@ namespace TRANSLATION3
 
         public Player(GameSettings.ControlMode controlMode)
         {
+            setControls(controlMode);
+        }
+
+        public void setControls(GameSettings.ControlMode controlMode)
+        {
             switch (controlMode)
             {
                 case GameSettings.ControlMode.NUMPAD:

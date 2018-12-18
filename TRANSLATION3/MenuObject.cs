@@ -23,7 +23,10 @@ namespace TRANSLATION3
             UNPAUSE,
             SET_PAUSE,
             SET_MENU,
-            CLOSE
+            CLOSE,
+            SWITCH_FOLLOW,
+            SWITCH_CONTROLS,
+            NULL
         }
 
         public MenuObject(bool canSelect, String text, int size,
@@ -32,17 +35,17 @@ namespace TRANSLATION3
             this.canSelect = canSelect;
             this.isSelected = false;
             this.location = location;
-            this.task = task;
             this.main = main;
 
-            if (task == Task.SET_MENU || task == Task.SET_PAUSE)
-                this.set = set;
-
-            image = Font.VIGILANT().print(text, size);
+            image = Font.VIGILANT.print(text, size);
 
             if (canSelect)
-                selectedImage = Font.VIGILANT().print(
+            {
+                selectedImage = Font.VIGILANT.print(
                     text, size, Color.FromArgb(255, 0, 0));
+                this.task = task;
+                this.set = set;
+            } 
         }
         
         public void doTask()
@@ -54,6 +57,29 @@ namespace TRANSLATION3
                     break;
                 case Task.CLOSE:
                     main.Close();
+                    break;
+                case Task.SET_PAUSE:
+                    main.setPauseFrame(set);
+                    break;
+                case Task.SWITCH_CONTROLS:
+                    main.getSettings().switchControlMode();
+                    List<Player> players = main.getLevel().getPlayers();
+                    players[0].setControls(
+                        main.getSettings().getControlMode());
+
+                    if (players.Count > 1)
+                    {
+                        players[1].setControls(1 - 
+                        main.getSettings().getControlMode());
+                    }
+
+                    main.refreshPauseFrame();
+                    break;
+                case Task.SWITCH_FOLLOW:
+                    main.getSettings().switchFollowMode(Int32.Parse(set));
+                    main.getLevel().setCamera(
+                        main.getSettings().getFollowMode());
+                    main.refreshPauseFrame();
                     break;
             }
         }

@@ -10,6 +10,12 @@ namespace TRANSLATION3
 {
     class Font
     {
+        public static Font VIGILANT = new Font("VIGILANT",
+                Resources.uppercase_vigilant_2_boldface,
+                Resources.lowercase_vigilant_2_boldface,
+                Resources.numbers_vigilant_2_boldface,
+                Resources.symbols_vigilant_2_boldface);
+
         private Bitmap[] glyphs = new Bitmap[128];
         private String name;
 
@@ -30,16 +36,7 @@ namespace TRANSLATION3
             // SPACE CHAR
             glyphs[32] = new Bitmap(32, glyphs[65].Height);
         }
-
-        public static Font VIGILANT()
-        {
-            return new Font("VIGILANT",
-                Resources.uppercase_vigilant_2_boldface,
-                Resources.lowercase_vigilant_2_boldface,
-                Resources.numbers_vigilant_2_boldface,
-                Resources.symbols_vigilant_2_boldface);
-        }
-
+        
         public Bitmap print(String text, int size)
         {
             int width = 0;

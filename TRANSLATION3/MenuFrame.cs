@@ -23,16 +23,43 @@ namespace TRANSLATION3
 
         public static MenuFrame fromString(String s, main main)
         {
+            MenuObject[] pauseObjs;
             switch (s.ToLower())
             {
                 case "pause":
-                    MenuObject[] pauseObjs = new MenuObject[] {
+                    pauseObjs = new MenuObject[] {
+                    new MenuObject(false, "PAUSED", 8, new Point(640, 100),
+                        MenuObject.Task.NULL, null, main),
                     new MenuObject(true, "RESUME", 4, new Point(640, 260),
                         MenuObject.Task.UNPAUSE, null, main),
                     new MenuObject(true, "SETTINGS", 4, new Point(640, 360),
-                        MenuObject.Task.SET_PAUSE, "settings", main),
+                        MenuObject.Task.SET_PAUSE, "settings-pause", main),
                     new MenuObject(true, "QUIT", 4, new Point(640, 460),
                         MenuObject.Task.CLOSE, null, main) };
+                    return new MenuFrame(pauseObjs, main);
+                case "settings-pause":
+                    GameSettings stgs = main.getSettings();
+                    pauseObjs = new MenuObject[] {
+                    new MenuObject(false, "SETTINGS", 8, new Point(640, 100),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "BACK", 4, new Point(640, 660),
+                        MenuObject.Task.SET_PAUSE, "pause", main),
+                    new MenuObject(false, "CAMERA FOLLOW MODE", 4, new Point(640, 240),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, stgs.getFollowMode().ToString(), 4, 
+                        new Point(640, 280), MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "LAST", 2,
+                        new Point(480, 280), MenuObject.Task.SWITCH_FOLLOW, "-1", main),
+                    new MenuObject(true, "NEXT", 2,
+                        new Point(800, 280), MenuObject.Task.SWITCH_FOLLOW, "1", main),
+                    new MenuObject(false, "CONTROL MODE", 4, new Point(640, 360),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, stgs.getControlMode().ToString(), 4,
+                        new Point(640, 400), MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "LAST", 2, new Point(480, 400),
+                        MenuObject.Task.SWITCH_CONTROLS, null, main),
+                    new MenuObject(true, "NEXT", 2, new Point(800, 400),
+                        MenuObject.Task.SWITCH_CONTROLS, null, main) };
                     return new MenuFrame(pauseObjs, main);
                 default:
                     return new MenuFrame(new MenuObject[] { }, main);
@@ -74,7 +101,6 @@ namespace TRANSLATION3
         public bool update(Cause cause, MouseEventArgs m, KeyEventArgs k)
         {
             // null m XOR k if the cause isn't relevant
-            // TODO: selVector and object selection update for KEY_DOWN
             switch (cause)
             {
                 case Cause.MOUSE_MOVE:
@@ -132,7 +158,7 @@ namespace TRANSLATION3
 
                     for (int i = 0; i < objects.Length; i++)
                     {
-                        if (i != selected)
+                        if (i != selected && objects[i].canBeSelected())
                         {
                             Point old = objects[selected].getLocation();
                             Point cand = objects[i].getLocation();
