@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TRANSLATION3
 {
-    class Sentry
+    public class Sentry
     {
         private static int NUM_TYPES = 16;
 
@@ -41,7 +41,7 @@ namespace TRANSLATION3
             SPAWN, // 150, 100, 0
             GRAV_RED,
             GRAV_INC,
-            GOD, // 0, 150, 150
+            GOD, // 150, 0, 150
             RANDOM // 20, 20, 20
         }
 
@@ -198,7 +198,7 @@ namespace TRANSLATION3
                             int i = 0;
                             while (i == 0 || platforms.ElementAt(i) == platform)
                             {
-                                Random rnd = new Random();
+                                Random rnd = new Random(Guid.NewGuid().GetHashCode());
                                 i = rnd.Next(1, platforms.Count);
                             }
                             setPlatform(platforms.ElementAt(i));
@@ -299,7 +299,7 @@ namespace TRANSLATION3
                             int i = 0;
                             while (i == 0 || platforms.ElementAt(i) == platform)
                             {
-                                Random rnd = new Random();
+                                Random rnd = new Random(Guid.NewGuid().GetHashCode());
                                 i = rnd.Next(1, platforms.Count);
                             }
                             child.setPlatform(platforms.ElementAt(i));
@@ -309,7 +309,7 @@ namespace TRANSLATION3
                         // RESOLVE to another type
                         while (type == Type.RANDOM)
                         {
-                            Random random = new Random();
+                            Random random = new Random(Guid.NewGuid().GetHashCode());
                             type = (Type)random.Next(0, NUM_TYPES);
                         }
 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace TRANSLATION3
 {
-    class Player
+    public class Player
     {
         private Level level;
 
@@ -31,14 +31,19 @@ namespace TRANSLATION3
 
         public Player() { }
 
-        public Player(String controlMode)
+        public Player(GameSettings.ControlMode controlMode)
         {
             switch (controlMode)
             {
-                case "NUMPAD":
+                case GameSettings.ControlMode.NUMPAD:
                     controls = new Keys[] {Keys.NumPad8, Keys.NumPad5,
                         Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Keys.NumPad9,
                         Keys.NumPad0, Keys.NumPad1, Keys.Escape};
+                    break;
+                default:
+                    controls = new Keys[] {Keys.W, Keys.S, Keys.A,
+                        Keys.D, Keys.Q, Keys.E,
+                        Keys.Space, Keys.Z, Keys.Escape};
                     break;
             }
         }
@@ -122,6 +127,11 @@ namespace TRANSLATION3
                 if (e.KeyCode == controls[7])
                 {
                     level.getCamera().switchZoom();
+                }
+
+                if (e.KeyCode == controls[8])
+                {
+                    level.pause();
                 }
             }
         }

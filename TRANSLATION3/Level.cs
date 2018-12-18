@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace TRANSLATION3
 {
-    class Level
+    public class Level
     {
         private List<Platform> platforms = new List<Platform>();
         private List<Player> players = new List<Player>();
@@ -166,7 +166,7 @@ namespace TRANSLATION3
                             Sentry pretend = new Sentry(sentry.getSecondary(), 0);
                             g.DrawImage(Render.sentry(pretend),
                             640 + (((o.X + s.X - 10) - 640) / d),
-                            360 + (((o.Y + s.Y - 10) - 360) / d));
+                            360 + (((o.Y + s.Y - 10) - 360) / d), 20 / d, 20 / d);
                         }
                     }
                 }
@@ -199,6 +199,11 @@ namespace TRANSLATION3
             }
 
             return render;
+        }
+
+        public void pause()
+        {
+            main.pause();
         }
 
         private bool hasFinished()

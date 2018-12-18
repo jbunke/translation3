@@ -47,13 +47,17 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="Font.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="main.Designer.cs">
+      <DependentUpon>main.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameSettings.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="MathExt.cs" />
+    <Compile Include="MenuFrame.cs" />
+    <Compile Include="MenuObject.cs" />
     <Compile Include="Mode.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Player.cs" />
@@ -67,8 +71,8 @@
     <Compile Include="Render.cs" />
     <Compile Include="SavedLevels.cs" />
     <Compile Include="Sentry.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="main.resx">
+      <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -162,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\classic15.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main100.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

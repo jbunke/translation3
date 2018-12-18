@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TRANSLATION3
 {
-    class Camera
+    public class Camera
     {
         private Player target;
         private Point location;

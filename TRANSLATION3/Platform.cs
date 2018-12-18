@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TRANSLATION3
 {
-    [Serializable] class Platform
+    [Serializable] public class Platform
     {
         private Point location;
         private int width;

@@ -19,6 +19,16 @@ namespace TRANSLATION3
             return bitmap;
         }
 
+        public static Bitmap menuBackground()
+        {
+            Bitmap bitmap = new Bitmap(1280, 720);
+            using (Graphics g = Graphics.FromImage(bitmap))
+            {
+                g.FillRectangle(new SolidBrush(Color.FromArgb(20, 20, 20)), 0, 0, 1280, 720);
+            }
+            return bitmap;
+        }
+
         public static Bitmap player()
         {
             Bitmap player = new Bitmap(20, 20);
@@ -39,7 +49,7 @@ namespace TRANSLATION3
                 case Sentry.Type.SHOVE:
                     return Color.FromArgb(0, 0, 127);
                 case Sentry.Type.PULL:
-                    return Color.FromArgb(175, 0, 175);
+                    return Color.FromArgb(100, 255, 255);
                 case Sentry.Type.DROP:
                     return Color.FromArgb(120, 0, 0);
                 case Sentry.Type.HORZ_MAGNET:

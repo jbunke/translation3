@@ -189,7 +189,7 @@ namespace TRANSLATION3.Properties {
         ///   Looks up a localized string similar to 3 1
         ///
         ///280 500 300
-        ///640 500 200
+        ///640 300 200
         ///1000 200 200
         ///
         ///HORZ_MAGNET 14 NONE 2
@@ -385,6 +385,37 @@ namespace TRANSLATION3.Properties {
         internal static string main1 {
             get {
                 return ResourceManager.GetString("main1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 15 4
+        ///
+        ///1000 1000 200
+        ///600 600 200
+        ///600 800 200
+        ///600 1000 200
+        ///600 1200 200
+        ///6000 1400 200
+        ///1000 600 200
+        ///1000 800 200
+        ///1000 1200 200
+        ///1000 1400 200
+        ///1400 600 200
+        ///1400 800 200
+        ///1400 1000 200
+        ///1400 1200 200
+        ///1400 1400 200
+        ///
+        ///SPAWN 10 SPAWN 1
+        ///SPAWN 10 SPAWN 5
+        ///SPAWN -10 SPAWN 10
+        ///SPAWN -10 SPAWN 14
+        ///.
+        /// </summary>
+        internal static string main100 {
+            get {
+                return ResourceManager.GetString("main100", resourceCulture);
             }
         }
         

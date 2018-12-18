@@ -11,7 +11,8 @@ namespace TRANSLATION3
 {
     class SavedLevels
     {
-        public static Level fetchLevel(String id, int playerc, main main)
+        public static Level fetchLevel(String id, int playerc,
+            Camera.FollowMode followMode, main main)
         {
             Debug.Assert(playerc == 1 || playerc == 2);
 
@@ -22,10 +23,11 @@ namespace TRANSLATION3
 
             if (playerc == 2)
             {
-                players = new Player[] { new Player(), new Player("NUMPAD") };
+                players = new Player[] { new Player(),
+                    new Player(GameSettings.ControlMode.NUMPAD) };
             } else
             {
-                players = new Player[] { new Player() };
+                players = new Player[] { new Player(main.getSettings().getControlMode()) };
             }
             
             switch (id)
@@ -76,13 +78,13 @@ namespace TRANSLATION3
                     break;
                 default:
                     String file = "../../Resources/" + id + ".txt";
-                    return readFromFile(file, players, main);
+                    return readFromFile(file, players, followMode, main);
             }
-
-            return new Level(players, platforms, sentries, key, Camera.FollowMode.STEADY, main);
+            return new Level(players, platforms, sentries, key, followMode, main);
         }
 
-        public static Level readFromFile(String file, Player[] players, main main)
+        public static Level readFromFile(String file, Player[] players,
+            Camera.FollowMode followMode, main main)
         {
             string[] lines = File.ReadAllLines(file);
             int platformc = Int32.Parse(
@@ -135,7 +137,7 @@ namespace TRANSLATION3
             }
                 
             return new Level(players, platforms, sentries,
-                key, Camera.FollowMode.STEADY, main);
+                key, followMode, main);
         }
     }
 }

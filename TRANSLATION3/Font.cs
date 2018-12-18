@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TRANSLATION3.Properties;
 
 namespace TRANSLATION3
 {
@@ -28,6 +29,15 @@ namespace TRANSLATION3
 
             // SPACE CHAR
             glyphs[32] = new Bitmap(32, glyphs[65].Height);
+        }
+
+        public static Font VIGILANT()
+        {
+            return new Font("VIGILANT",
+                Resources.uppercase_vigilant_2_boldface,
+                Resources.lowercase_vigilant_2_boldface,
+                Resources.numbers_vigilant_2_boldface,
+                Resources.symbols_vigilant_2_boldface);
         }
 
         public Bitmap print(String text, int size)
@@ -64,6 +74,29 @@ namespace TRANSLATION3
             printed = resize;
 
             return printed;
+        }
+
+        public Bitmap print(String text, int size, Color c)
+        {
+            return recolor(c, print(text, size), size);
+        }
+
+        public Bitmap recolor(Color r, Bitmap bitmap, int size)
+        {
+            using (Graphics g = Graphics.FromImage(bitmap))
+            {
+                for (int x = 0; x < bitmap.Width; x += size)
+                {
+                    for (int y = 0; y < bitmap.Height; y += size)
+                    {
+                        if (bitmap.GetPixel(x, y) == Color.FromArgb(255, 0, 0, 0))
+                        {
+                            g.FillRectangle(new SolidBrush(r), x, y, size, size);
+                        }
+                    }
+                }
+            }
+            return bitmap;
         }
 
         private void generate(Bitmap reference, int offset, int duration)
