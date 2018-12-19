@@ -50,21 +50,24 @@ namespace TRANSLATION3
             // CAMPAIGN TEST
             campaign = new List<String>();
 
-            campaign.Add("test");
+            //campaign.Add("main20");
+            //campaign.Add("main34");
+            //campaign.Add("main35");
+            //campaign.Add("main36");
+            //campaign.Add("main37");
+            //campaign.Add("main38");
+            //campaign.Add("main50");
+            //campaign.Add("main75");
+            campaign.Add("main76");
+            //campaign.Add("main77");
+            
             for (int i = 0; i < 8; i++)
             {
                 campaign.Add("main" + i);
                 campaign.Add("classic" + i);
                 campaign.Add("classic" + (i + 8));
             }
-            campaign.Add("main20");
-            campaign.Add("main34");
-            campaign.Add("main35");
-            campaign.Add("main36");
-            campaign.Add("main37");
-            campaign.Add("main38");
-            campaign.Add("main50");
-
+            campaign.Add("behemoth");
             generateLevel();
         }
 
@@ -183,6 +186,8 @@ namespace TRANSLATION3
         {
             if (campaignIndex + 1 < campaign.Count)
                 campaignIndex++;
+            // TODO: go right to next level for now; until transitions / cinematics
+            generateLevel();
         }
 
         public void pause()

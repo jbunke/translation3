@@ -65,12 +65,13 @@ namespace TRANSLATION3
                 player.movement();
             }
 
-            foreach (Sentry sentry in sentries)
+            // don't use enhanced loop (foreach) as collection changes with spawns
+            for (int i = 0; i < sentries.Count; i++)
             {
-                if (sentry.isAlive())
+                if (sentries.ElementAt(i).isAlive())
                 {
-                    sentry.patrol();
-                    sentry.behave();
+                    sentries.ElementAt(i).patrol();
+                    sentries.ElementAt(i).behave();
                 }
             }
 
@@ -103,7 +104,6 @@ namespace TRANSLATION3
                 if (countdown == 0)
                 {
                     main.levelComplete();
-                    main.generateLevel();
                 }
             }
         }
@@ -287,7 +287,8 @@ namespace TRANSLATION3
                 if (p < u + 1000 && p > l - 1000)
                 {
                     return false;
-                } else if (i == 0 && players.Count > 1)
+                } else if (i == 0 && players.Count > 1 &&
+                    camera.getTarget() == players.ElementAt(0))
                 {
                     camera.setTarget(players.ElementAt(1));
                 }

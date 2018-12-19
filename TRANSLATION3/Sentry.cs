@@ -10,7 +10,7 @@ namespace TRANSLATION3
 {
     public class Sentry
     {
-        private static int NUM_TYPES = 16;
+        private static int NUM_TYPES = 18;
 
         private Type type;
         private Platform platform;
@@ -393,7 +393,7 @@ namespace TRANSLATION3
                             type = (Type)random.Next(0, NUM_TYPES);
                         }
 
-                        if (type == Type.SPAWN)
+                        if (type == Type.SPAWN || type == Type.NECROMANCER)
                         {
                             children = new List<Sentry>();
                             count = 0;

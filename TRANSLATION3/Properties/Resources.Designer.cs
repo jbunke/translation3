@@ -664,6 +664,88 @@ namespace TRANSLATION3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 7 6
+        ///
+        ///1000 1000 200
+        ///0 1000 200
+        ///2000 1000 200
+        ///650 1200 100
+        ///1350 1200 100
+        ///1000 600 250
+        ///1000 1400 250
+        ///
+        ///NECROMANCER 12 NONE 1
+        ///NECROMANCER -12 NONE 2
+        ///GRAV_INC 6 NONE 3
+        ///PULL -14 NONE 4
+        ///GRAV_RED 8 NONE 5
+        ///GOD -6 NONE 6.
+        /// </summary>
+        internal static string main75 {
+            get {
+                return ResourceManager.GetString("main75", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 15 2
+        ///
+        ///1000 1000 100
+        ///500 1000 300
+        ///0 1000 100
+        ///1500 1000 300
+        ///2000 1000 100
+        ///0 800 300
+        ///500 800 100
+        ///1000 800 300
+        ///1500 800 100
+        ///2000 800 300
+        ///0 1200 300
+        ///500 1200 100
+        ///1000 1200 300
+        ///1500 1200 100
+        ///2000 1200 300
+        ///
+        ///SPAWN 12 SPAWN 5
+        ///NECROMANCER -10 NONE 14
+        ///.
+        /// </summary>
+        internal static string main76 {
+            get {
+                return ResourceManager.GetString("main76", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9 8
+        ///
+        ///1000 1000 200
+        ///500 800 200
+        ///1000 800 100
+        ///1500 800 200
+        ///500 1000 100
+        ///1500 1000 100
+        ///500 1200 200
+        ///1000 1200 100
+        ///1500 1200 200
+        ///
+        ///NECROMANCER 10 NONE 1
+        ///NECROMANCER -10 NONE 3
+        ///NECROMANCER -10 NONE 6
+        ///NECROMANCER 10 NONE 8
+        ///EXPAND 8 NONE 2
+        ///EXPAND 8 NONE 4
+        ///EXPAND -8 NONE 5
+        ///EXPAND -8 NONE 7
+        ///.
+        /// </summary>
+        internal static string main77 {
+            get {
+                return ResourceManager.GetString("main77", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap numbers_vigilant_2_boldface {
@@ -696,12 +778,12 @@ namespace TRANSLATION3.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 3 2
         ///
-        ///1300 1000 200
-        ///700 1000 200
         ///1000 1000 200
+        ///700 1000 200
+        ///1300 1000 200
         ///
         ///PUSH 2 NONE 1
-        ///EXPAND -6 NONE 2
+        ///NECROMANCER -6 NONE 2
         ///.
         /// </summary>
         internal static string test {

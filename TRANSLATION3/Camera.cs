@@ -12,7 +12,7 @@ namespace TRANSLATION3
         private Player target;
         private Point location;
         private bool zoomedOut;
-        private FollowMode followMode = FollowMode.GLUED;
+        private FollowMode followMode = FollowMode.STEADY;
 
         public enum FollowMode
         {
@@ -55,6 +55,11 @@ namespace TRANSLATION3
         {
             this.target = target;
             this.location = new Point(target.getLocation().X, target.getLocation().Y);
+        }
+
+        public Player getTarget()
+        {
+            return target;
         }
 
         public Point getLocation()
