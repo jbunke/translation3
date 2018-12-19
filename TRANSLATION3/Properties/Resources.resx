@@ -181,14 +181,41 @@
   <data name="main2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main2.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="main20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main20.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="main3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main3.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main34" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main34.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="main35" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main35.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="main36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main36.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main37" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main37.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main38" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main38.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main4.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main5.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="main50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main50.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main6.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main7.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="numbers_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\numbers_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -198,6 +225,9 @@
   </data>
   <data name="symbols_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\symbols_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="test" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\test.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="uppercase_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\uppercase_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

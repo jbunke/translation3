@@ -50,14 +50,19 @@ namespace TRANSLATION3
             // CAMPAIGN TEST
             campaign = new List<String>();
 
-            campaign.Add("main35");
-            for (int i = 0; i < 16; i++)
+            campaign.Add("test");
+            for (int i = 0; i < 8; i++)
             {
+                campaign.Add("main" + i);
                 campaign.Add("classic" + i);
+                campaign.Add("classic" + (i + 8));
             }
-            // campaign.Add("behemoth");
-            campaign.Add("Take Flight");
-            campaign.Add("staircase1");
+            campaign.Add("main20");
+            campaign.Add("main34");
+            campaign.Add("main35");
+            campaign.Add("main36");
+            campaign.Add("main37");
+            campaign.Add("main38");
             campaign.Add("main50");
 
             generateLevel();
@@ -141,10 +146,30 @@ namespace TRANSLATION3
             }
         }
 
-        private void applySettings()
+        public void applySettings()
         {
             // TIMER PERIOD / UPDATE FREQUENCY
             tmr.Interval = gameSettings.getPeriod();
+
+            // WINDOW MODE
+            if (gameSettings.getWindowMode() == GameSettings.WindowMode.FULLSCREEN)
+            {
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.MinimumSize = new Size(0, 0);
+                this.MaximumSize = new Size(0, 0);
+                this.Location = new Point(0, 0);
+                this.Bounds = Screen.PrimaryScreen.Bounds;
+
+                pictureBox1.Size = Screen.PrimaryScreen.Bounds.Size;
+            } else
+            {
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.MinimumSize = new Size(1296, 759);
+                this.MaximumSize = new Size(1296, 759);
+                this.Location = new Point(10, 10);
+
+                pictureBox1.Size = new Size(1280, 720);
+            }
         }
 
         public void generateLevel()
@@ -191,6 +216,11 @@ namespace TRANSLATION3
         public GameSettings getSettings()
         {
             return gameSettings;
+        }
+
+        public Size getSize()
+        {
+            return pictureBox1.Size;
         }
 
         public void setPauseFrame(String s)

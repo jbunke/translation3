@@ -66,6 +66,8 @@ namespace TRANSLATION3
                     return Color.FromArgb(255, 255, 255);
                 case Sentry.Type.SPREAD:
                     return Color.FromArgb(0, 151, 151);
+                case Sentry.Type.EXPAND:
+                    return Color.FromArgb(255, 100, 0);
                 case Sentry.Type.SPAWN:
                     return Color.FromArgb(150, 100, 0);
                 case Sentry.Type.GRAV_RED:
@@ -76,6 +78,8 @@ namespace TRANSLATION3
                     return Color.FromArgb(150, 0, 150);
                 case Sentry.Type.RANDOM:
                     return Color.FromArgb(20, 20, 20);
+                case Sentry.Type.NECROMANCER:
+                    return Color.FromArgb(160, 160, 160);
                 default:
                      return Color.FromArgb(0, 0, 0);
             }
@@ -94,7 +98,7 @@ namespace TRANSLATION3
                     g.FillRectangle(new SolidBrush(color), 3, 3, 14, 14);
                 } else
                 {
-                    g.FillRectangle(new SolidBrush(color), 0, 16, 20, 4);
+                    // g.FillRectangle(new SolidBrush(color), 0, 16, 20, 4);
                 }
             }
             return bitmap;

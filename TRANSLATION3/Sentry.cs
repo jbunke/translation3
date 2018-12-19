@@ -38,6 +38,8 @@ namespace TRANSLATION3
             DECAY, // 255, 255, 0
             FLEE, // 255, 255, 255
             SPREAD, // 0, 151, 0
+            NECROMANCER, // 0, 0, 0
+            EXPAND, // 255, 100, 0
             SPAWN, // 150, 100, 0
             GRAV_RED,
             GRAV_INC,
@@ -51,11 +53,11 @@ namespace TRANSLATION3
             direction = Math.Sign(speed);
             this.speed = Math.Abs(speed);
             this.alive = true;
+            this.count = 0;
 
-            if (type == Type.SPAWN)
+            if (type == Type.SPAWN || type == Type.NECROMANCER)
             {
                 this.secondary = Type.RANDOM;
-                this.count = 0;
                 this.children = new List<Sentry>();
             }
         }
@@ -118,6 +120,19 @@ namespace TRANSLATION3
         public void crush()
         {
             alive = false;
+            if (type == Type.NECROMANCER)
+            {
+                foreach (Sentry child in children)
+                {
+                    if (child.alive)
+                    {
+                        child.crush();
+                        level.addAnimation(new Animation(
+                            Animation.Permanence.TEMPORARY,
+                            Render.sentryColor(child), child.getLocation()));
+                    }
+                }
+            }
         }
 
         public bool sightDependent()
@@ -128,6 +143,7 @@ namespace TRANSLATION3
                 case Type.GRAV_RED:
                 case Type.HORZ_MAGNET:
                 case Type.SPAWN:
+                case Type.NECROMANCER:
                 case Type.RANDOM:
                     return false;
                 default:
@@ -148,7 +164,19 @@ namespace TRANSLATION3
                 direction = direction * -1;
             }
 
+            fix();
+        }
+
+        private void fix()
+        {
+            // fixes the Y pos of the sentry to above its platform
             location.Y = platform.getLocation().Y - 20;
+
+            if (location.X < platform.getLocation().X - (platform.getWidth() / 2))
+                location.X = platform.getLocation().X - (platform.getWidth() / 2) + 10;
+
+            if (location.X > platform.getLocation().X + (platform.getWidth() / 2))
+                location.X = platform.getLocation().X + (platform.getWidth() / 2) - 10;
         }
 
         public void behave()
@@ -194,6 +222,25 @@ namespace TRANSLATION3
                             if (platform.getWidth() < 500)
                                 platform.changeWidth(speed);
                             break;
+                        case Type.EXPAND:
+                            foreach (Platform p in level.getPlatforms())
+                            {
+                                if (p != platform)
+                                {
+                                    p.moveX(speed * Math.Sign(
+                                        p.getLocation().X - platform.getLocation().X));
+                                    p.moveY((speed / 2) * Math.Sign(
+                                        p.getLocation().Y - platform.getLocation().Y));
+                                }
+                            }
+                            foreach (Sentry s in level.getSentries())
+                            {
+                                if (s != this)
+                                {
+                                    s.fix();
+                                }
+                            }
+                            break;
                         case Type.FLEE:
                             int i = 0;
                             while (i == 0 || platforms.ElementAt(i) == platform)
@@ -208,6 +255,7 @@ namespace TRANSLATION3
 
                             List<Player> players = level.getPlayers();
                             List<Sentry> sentries = level.getSentries();
+                            List<Animation> animations = level.getAnimations();
                             foreach (Player p in players)
                             {
                                 p.setY(-1 * p.getLocation().Y);
@@ -226,6 +274,11 @@ namespace TRANSLATION3
                                 s.location.Y -= 40;
                             }
 
+                            foreach (Animation a in animations)
+                            {
+                                a.setY(-1 * a.getLocation().Y);
+                            }
+
                             int o = seesY - sees.getLocation().Y;
 
                             foreach (Player p in players)
@@ -242,6 +295,11 @@ namespace TRANSLATION3
                             foreach (Sentry s in sentries)
                             {
                                 s.location.Y += o;
+                            }
+
+                            foreach (Animation a in animations)
+                            {
+                                a.moveY(o);
                             }
 
                             break;
@@ -306,6 +364,25 @@ namespace TRANSLATION3
                                 i = rnd.Next(1, platforms.Count);
                             }
                             child.setPlatform(platforms.ElementAt(i));
+                        }
+                        break;
+                    case Type.NECROMANCER:
+                        count++;
+                        count %= 100;
+
+                        // REANIMATION LOGIC
+                        if (count == 0)
+                        {
+                            for (int i = 0; i < level.getSentries().Count; i++)
+                            {
+                                Sentry s = level.getSentries().ElementAt(i);
+                                if (!s.alive && s != this)
+                                {
+                                    s.alive = true;
+                                    children.Add(s);
+                                    break;
+                                }
+                            }
                         }
                         break;
                     case Type.RANDOM:

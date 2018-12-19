@@ -12,6 +12,7 @@ namespace TRANSLATION3
         private Camera.FollowMode followMode;
         private int period;
         private ControlMode controlMode;
+        private WindowMode windowMode;
 
         public enum ControlMode
         {
@@ -19,20 +20,49 @@ namespace TRANSLATION3
             NUMPAD
         }
 
+        public enum WindowMode
+        {
+            WINDOWED,
+            FULLSCREEN
+        }
+
         private GameSettings(Camera.FollowMode followMode, int period, 
-            ControlMode controlMode)
+            ControlMode controlMode, WindowMode windowMode)
         {
             this.followMode = followMode;
             this.period = period;
             this.controlMode = controlMode;
+            this.windowMode = windowMode;
         }
 
         public static GameSettings defaultSettings()
         {
-            return new GameSettings(Camera.FollowMode.STEADY, 20, ControlMode.WASD);
+            return new GameSettings(Camera.FollowMode.STEADY,
+                20, ControlMode.WASD, WindowMode.WINDOWED);
         }
 
         public int getPeriod() { return period; }
+
+        public String gameSpeed()
+        {
+            switch (period)
+            {
+                case 10:
+                    return "FASTEST";
+                case 15:
+                    return "FAST";
+                case 20:
+                    return "NORMAL";
+                case 25:
+                default:
+                    return "SLOW";
+            }
+        }
+
+        public WindowMode getWindowMode()
+        {
+            return windowMode;
+        }
 
         public ControlMode getControlMode()
         {
@@ -72,7 +102,23 @@ namespace TRANSLATION3
 
         public void switchControlMode()
         {
-            controlMode = (ControlMode)(1 - (int)controlMode);
+            controlMode = 1 - controlMode;
+        }
+
+        public void switchWindowMode()
+        {
+            windowMode = 1 - windowMode;
+        }
+
+        public void switchPeriod(int change)
+        {
+            if (change == 1 && period != 25)
+            {
+                period += 5;
+            } else if (change == -1 && period != 10)
+            {
+                period -= 5;
+            }
         }
     }
 }

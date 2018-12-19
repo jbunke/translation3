@@ -26,6 +26,8 @@ namespace TRANSLATION3
             CLOSE,
             SWITCH_FOLLOW,
             SWITCH_CONTROLS,
+            SWITCH_WINDOW,
+            SWITCH_PERIOD,
             NULL
         }
 
@@ -79,6 +81,16 @@ namespace TRANSLATION3
                     main.getSettings().switchFollowMode(Int32.Parse(set));
                     main.getLevel().setCamera(
                         main.getSettings().getFollowMode());
+                    main.refreshPauseFrame();
+                    break;
+                case Task.SWITCH_PERIOD:
+                    main.getSettings().switchPeriod(Int32.Parse(set));
+                    main.applySettings();
+                    main.refreshPauseFrame();
+                    break;
+                case Task.SWITCH_WINDOW:
+                    main.getSettings().switchWindowMode();
+                    main.applySettings();
                     main.refreshPauseFrame();
                     break;
             }

@@ -14,6 +14,7 @@ namespace TRANSLATION3
         private List<Platform> platforms = new List<Platform>();
         private List<Player> players = new List<Player>();
         private List<Sentry> sentries = new List<Sentry>();
+        private List<Animation> animations = new List<Animation>();
         private Camera camera;
         private Bitmap background;
 
@@ -47,6 +48,8 @@ namespace TRANSLATION3
                 this.sentries.Add(sentries[i]);
             }
 
+            this.animations = new List<Animation>();
+
             this.camera = new Camera(followMode);
             camera.setTarget(players[0]);
 
@@ -62,12 +65,25 @@ namespace TRANSLATION3
                 player.movement();
             }
 
-            for (int i = 0; i < sentries.Count; i++)
+            foreach (Sentry sentry in sentries)
             {
-                if (sentries.ElementAt(i).isAlive())
+                if (sentry.isAlive())
                 {
-                    sentries.ElementAt(i).patrol();
-                    sentries.ElementAt(i).behave();
+                    sentry.patrol();
+                    sentry.behave();
+                }
+            }
+
+            for (int i = 0; i < animations.Count; i++)
+            {
+                animations.ElementAt(i).older();
+
+                if (animations.ElementAt(i).getAge() > 5 &&
+                    animations.ElementAt(i).getPermanence() ==
+                    Animation.Permanence.TEMPORARY)
+                {
+                    animations.RemoveAt(i);
+                    i--;
                 }
             }
 
@@ -108,6 +124,32 @@ namespace TRANSLATION3
                 int d = 1;
                 if (z)
                     d = 2;
+
+                // Animations
+                foreach (Animation animation in animations)
+                {
+                    Point a = animation.getLocation();
+                    
+                    switch (animation.getPermanence())
+                    {
+                        case Animation.Permanence.PERMANENT:
+                            Bitmap image = animation.getBitmap();
+                            g.DrawImage(image,
+                                640 + (((o.X + a.X - (image.Size.Width / 2)) - 640) / d),
+                                360 + (((o.Y + a.Y - (image.Size.Height / 2)) - 360) / d), 
+                                image.Width / d, image.Height / d);
+                            break;
+                        case Animation.Permanence.TEMPORARY:
+                            int age = animation.getAge();
+                            int size = 4 * age;
+                            g.FillRectangle(new SolidBrush(
+                                Color.FromArgb(120 - (15 * age), animation.getColor())),
+                                640 + (((o.X + a.X - (size / 2)) - 640) / d),
+                                360 + (((o.Y + a.Y - (size / 2)) - 360) / d),
+                                size / d, size / d);
+                            break;
+                    }
+                }
 
                 // Platforms
                 foreach (Platform platform in platforms)
@@ -158,6 +200,16 @@ namespace TRANSLATION3
                     g.DrawImage(Render.sentry(sentry),
                         640 + (((o.X + s.X - 10) - 640) / d),
                         360 + (((o.Y + s.Y - 10) - 360) / d), 20 / d, 20 / d);
+
+                    if (sentry.getType() == Sentry.Type.NECROMANCER && sentry.isAlive())
+                    {
+                        Sentry pretend = new Sentry(Sentry.Type.RANDOM, 0);
+                        int size = (int)(10 / (100 / (float)sentry.getCount()));
+                        g.DrawImage(Render.sentry(pretend),
+                        640 + (((o.X + s.X - (size / 2)) - 640) / d),
+                        360 + (((o.Y + s.Y - (size / 2)) - 360) / d),
+                        size / d, size / d);
+                    }
 
                     if (sentry.getType() == Sentry.Type.SPAWN && sentry.isAlive())
                     {
@@ -251,6 +303,11 @@ namespace TRANSLATION3
             }
         }
 
+        public void addAnimation(Animation animation)
+        {
+            animations.Add(animation);
+        }
+
         public Platform startingPlatform()
         {
             Debug.Assert(platforms.Count >= 1);
@@ -276,6 +333,11 @@ namespace TRANSLATION3
         public List<Player> getPlayers()
         {
             return players;
+        }
+
+        public List<Animation> getAnimations()
+        {
+            return animations;
         }
 
         public void setCamera(Camera.FollowMode followMode)

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="main.cs">
@@ -175,6 +176,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\main35.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main36.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main37.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main38.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main20.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main34.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main7.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

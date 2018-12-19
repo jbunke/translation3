@@ -61,7 +61,12 @@ namespace TRANSLATION3
                 if (e.KeyCode == controls[0])
                 {
                     // JUMP
-                    if (isSupported()) gAcceleration = 30;
+                    if (isSupported())
+                    {
+                        gAcceleration = 30;
+                        level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
+                            Color.FromArgb(255, 0, 0), location));
+                    }
                 }
 
                 if (e.KeyCode == controls[1])
@@ -74,6 +79,8 @@ namespace TRANSLATION3
                     else
                     {
                         gAcceleration -= 30;
+                        level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
+                            Color.FromArgb(255, 0, 0), location));
                     }
                 }
 
@@ -116,6 +123,8 @@ namespace TRANSLATION3
                     // TELEPORT
                     isTele = false;
                     teleport();
+                    level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
+                        Color.FromArgb(255, 0, 0), location));
                 }
 
                 if (e.KeyCode == controls[4])
@@ -126,16 +135,21 @@ namespace TRANSLATION3
 
                 if (e.KeyCode == controls[5])
                 {
+                    // LOAD
                     location = saveLocation;
+                    level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
+                        Color.FromArgb(255, 0, 0), location));
                 }
 
                 if (e.KeyCode == controls[7])
                 {
+                    // ZOOM
                     level.getCamera().switchZoom();
                 }
 
                 if (e.KeyCode == controls[8])
                 {
+                    // PAUSE
                     level.pause();
                 }
             }
@@ -245,9 +259,13 @@ namespace TRANSLATION3
             {
                 Point s = sentry.getLocation();
                 if (lastLocation.Y < s.Y && location.Y > s.Y - 20 &&
-                    Math.Abs(location.X - s.X) < 20)
+                    Math.Abs(location.X - s.X) < 20 && sentry.isAlive())
                 {
                     sentry.crush();
+                    level.addAnimation(new Animation(Animation.Permanence.PERMANENT,
+                        Render.sentryColor(sentry), sentry.getLocation()));
+                    level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
+                        Render.sentryColor(sentry), sentry.getLocation()));
                 }
             }
         }

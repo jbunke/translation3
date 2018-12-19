@@ -54,22 +54,85 @@ namespace TRANSLATION3
                         MenuObject.Task.NULL, null, main),
                     new MenuObject(true, "BACK", 4, new Point(640, 660),
                         MenuObject.Task.SET_PAUSE, "pause", main),
-                    new MenuObject(false, "CAMERA FOLLOW MODE", 4, new Point(640, 240),
+                    new MenuObject(false, "CAMERA FOLLOW MODE", 4, new Point(640, 180),
                         MenuObject.Task.NULL, null, main),
                     new MenuObject(false, stgs.getFollowMode().ToString(), 4, 
-                        new Point(640, 280), MenuObject.Task.NULL, null, main),
+                        new Point(640, 220), MenuObject.Task.NULL, null, main),
                     new MenuObject(true, "<", 4,
-                        new Point(480, 280), MenuObject.Task.SWITCH_FOLLOW, "-1", main),
+                        new Point(520, 220), MenuObject.Task.SWITCH_FOLLOW, "-1", main),
                     new MenuObject(true, ">", 4,
-                        new Point(800, 280), MenuObject.Task.SWITCH_FOLLOW, "1", main),
-                    new MenuObject(false, "CONTROL MODE", 4, new Point(640, 360),
+                        new Point(760, 220), MenuObject.Task.SWITCH_FOLLOW, "1", main),
+                    new MenuObject(false, "WINDOW MODE", 4, new Point(640, 300),
                         MenuObject.Task.NULL, null, main),
-                    new MenuObject(false, stgs.getControlMode().ToString(), 4,
-                        new Point(640, 400), MenuObject.Task.NULL, null, main),
-                    new MenuObject(true, "<", 4, new Point(480, 400),
+                    new MenuObject(false, stgs.getWindowMode().ToString(),
+                        4, new Point(640, 340), MenuObject.Task.SET_PAUSE, null, main),
+                    new MenuObject(true, "<", 4, new Point(480, 340),
+                        MenuObject.Task.SWITCH_WINDOW, null, main),
+                    new MenuObject(true, ">", 4, new Point(800, 340),
+                        MenuObject.Task.SWITCH_WINDOW, null, main),
+                    new MenuObject(false, "CONTROL MODE", 4, new Point(640, 420),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, stgs.getControlMode().ToString(),
+                        4, new Point(640, 460), MenuObject.Task.SET_PAUSE,
+                        "controls-pause", main),
+                    new MenuObject(true, "<", 4, new Point(520, 460),
                         MenuObject.Task.SWITCH_CONTROLS, null, main),
-                    new MenuObject(true, ">", 4, new Point(800, 400),
-                        MenuObject.Task.SWITCH_CONTROLS, null, main) };
+                    new MenuObject(true, ">", 4, new Point(760, 460),
+                        MenuObject.Task.SWITCH_CONTROLS, null, main),
+                    new MenuObject(false, "GAME SPEED", 4, new Point(640, 540),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, stgs.gameSpeed(), 4,
+                        new Point(640, 580), MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "<", 4, new Point(520, 580),
+                        MenuObject.Task.SWITCH_PERIOD, "1", main),
+                    new MenuObject(true, ">", 4, new Point(760, 580),
+                        MenuObject.Task.SWITCH_PERIOD, "-1", main) };
+                    return new MenuFrame(pauseObjs, main);
+                case "controls-pause":
+                    Keys[] controls = main.getSettings().getControls();
+                    int lc = 480;
+                    int rc = 800;
+                    pauseObjs = new MenuObject[] {
+                    new MenuObject(false, "CONTROLS", 8, new Point(640, 100),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "BACK", 4, new Point(640, 660),
+                        MenuObject.Task.SET_PAUSE, "settings-pause", main),
+                    new MenuObject(false, "JUMP", 4, new Point(lc, 200),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, controls[0].ToString(), 4,
+                        new Point(rc, 200), MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "DROP", 4, new Point(lc, 240),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, controls[1].ToString(), 4,
+                        new Point(rc, 240), MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "LEFT", 4, new Point(lc, 280),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, controls[2].ToString(), 4,
+                        new Point(rc, 280), MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "RIGHT", 4, new Point(lc, 320),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, controls[3].ToString(), 4,
+                        new Point(rc, 320), MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "SAVE LOCATION", 4, new Point(lc, 360),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, controls[4].ToString(), 4,
+                        new Point(rc, 360), MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "LOAD LOCATION", 4, new Point(lc, 400),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, controls[5].ToString(), 4,
+                        new Point(rc, 400), MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "TELEPORT", 4, new Point(lc, 440),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, controls[6].ToString(), 4,
+                        new Point(rc, 440), MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "CAMERA ZOOM", 4, new Point(lc, 480),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, controls[7].ToString(), 4,
+                        new Point(rc, 480), MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "PAUSE", 4, new Point(lc, 520),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, controls[8].ToString(), 4,
+                        new Point(rc, 520), MenuObject.Task.NULL, null, main) };
                     return new MenuFrame(pauseObjs, main);
                 default:
                     return new MenuFrame(new MenuObject[] { }, main);
@@ -116,7 +179,9 @@ namespace TRANSLATION3
                 case Cause.MOUSE_MOVE:
                     for (int i = 0; i < objects.Length; i++)
                     {
-                        bool val = objects[i].isHovering(new Point(m.X, m.Y));
+                        int x = (int)(m.X * (1280 / (float)main.getSize().Width));
+                        int y = (int)(m.Y * (720 / (float)main.getSize().Height));
+                        bool val = objects[i].isHovering(new Point(x, y));
                         
                         selVector[i] = val;
                         objects[i].setSelect(val);
