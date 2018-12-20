@@ -39,12 +39,13 @@ namespace TRANSLATION3
             this.location = location;
             this.main = main;
 
-            image = Font.VIGILANT.print(text, size);
+            image = Font.VIGILANT.print(text, size,
+                Color.FromArgb(255, 0, 0));
 
             if (canSelect)
             {
                 selectedImage = Font.VIGILANT.print(
-                    text, size, Color.FromArgb(255, 0, 0));
+                    text, size, Color.FromArgb(255, 255, 255));
                 this.task = task;
                 this.set = set;
             } 

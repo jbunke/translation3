@@ -129,7 +129,7 @@ namespace TRANSLATION3
                         child.crush();
                         level.addAnimation(new Animation(
                             Animation.Permanence.TEMPORARY,
-                            Render.sentryColor(child), child.getLocation()));
+                            Render.sentryColor(child), child.getLocation(), 0));
                     }
                 }
             }

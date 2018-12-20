@@ -87,6 +87,7 @@ namespace TRANSLATION3
         public static Level readFromFile(String file, Player[] players,
             Camera.FollowMode followMode, main main)
         {
+            // SETUP
             string[] lines = File.ReadAllLines(file);
             int platformc = Int32.Parse(
                 lines[0].Substring(0, lines[0].IndexOf(" ")));
@@ -96,6 +97,10 @@ namespace TRANSLATION3
             Sentry[] sentries = new Sentry[sentryc];
             int[] key = new int[sentryc];
 
+            // NAME
+            String name = lines[1];
+
+            // PLATFORMS
             int l = 2;
 
             for (int i = 0; i < platformc; i++)
@@ -110,7 +115,13 @@ namespace TRANSLATION3
                 platforms[i] = new Platform(new Point(x, y), w);
             }
 
-            l += platformc + 1;
+            l += platformc;
+
+            // NOTE
+            String note = lines[l];
+
+            // SENTRIES
+            l++;
 
             for (int i = 0; i < sentryc; i++)
             {
@@ -138,7 +149,7 @@ namespace TRANSLATION3
             }
                 
             return new Level(players, platforms, sentries,
-                key, followMode, main);
+                key, followMode, main, name, note);
         }
     }
 }

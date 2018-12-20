@@ -1,5 +1,5 @@
 7 6
-
+Conveyor Belt
 1000 700 100
 1000 1000 200
 800 1000 200
@@ -7,7 +7,7 @@
 2800 1300 200
 800 1300 200
 2600 1300 200
-
+Sentries can create dead zones if their powers cancel out.
 MOVE 6 NONE 1
 SHOVE 10 NONE 2
 SHOVE -10 NONE 3

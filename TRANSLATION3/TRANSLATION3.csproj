@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="CineFrame.cs" />
+    <Compile Include="Cinematic.cs" />
     <Compile Include="Font.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
@@ -70,6 +72,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Render.cs" />
+    <Compile Include="HUDElement.cs" />
     <Compile Include="SavedLevels.cs" />
     <Compile Include="Sentry.cs" />
     <EmbeddedResource Include="main.resx">
@@ -215,6 +218,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\main77.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main9.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main10.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main11.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main12.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\.redsquaregames.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\t3logo-664-164.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main13.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mousepointer.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

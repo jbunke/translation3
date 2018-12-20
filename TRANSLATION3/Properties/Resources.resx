@@ -175,8 +175,20 @@
   <data name="main1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main1.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="main10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main10.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="main100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main100.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main11.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main12.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main13.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="main2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main2.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
@@ -226,6 +238,15 @@
   <data name="main77" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\main77.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="main8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main8.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="main9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\main9.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="mousepointer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mousepointer.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="numbers_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\numbers_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -235,10 +256,16 @@
   <data name="symbols_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\symbols_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="t3logo_664_164" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\t3logo-664-164.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="test" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\test.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="uppercase_vigilant_2_boldface" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\uppercase_vigilant_2_boldface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_redsquaregames" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\.redsquaregames.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

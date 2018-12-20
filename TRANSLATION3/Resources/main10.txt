@@ -1,0 +1,8 @@
+3 2
+Defying Gravity
+1000 1000 200
+800 700 200
+800 1400 200
+The camera has a zoom toggle.
+GRAV_RED 10 NONE 1
+GRAV_INC -6 NONE 2

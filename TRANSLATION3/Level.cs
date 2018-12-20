@@ -15,8 +15,11 @@ namespace TRANSLATION3
         private List<Player> players = new List<Player>();
         private List<Sentry> sentries = new List<Sentry>();
         private List<Animation> animations = new List<Animation>();
+        private List<HUDElement> elements = new List<HUDElement>();
         private Camera camera;
         private Bitmap background;
+        private String name = "";
+        private String note = "";
 
         private main main;
         private bool finished = false;
@@ -58,13 +61,23 @@ namespace TRANSLATION3
             this.background = Render.initialBackground();
         }
 
+        public Level(Player[] players, Platform[] platforms,
+            Sentry[] sentries, int[] key, Camera.FollowMode followMode,
+            main main, String name, String note) : this(players, platforms, sentries, key, followMode, main)
+        {
+            this.name = name;
+            this.note = note;
+        }
+
         public void update()
         {
+            // PLAYER(S)
             foreach (Player player in players)
             {
                 player.movement();
             }
 
+            // SENTRIES
             // don't use enhanced loop (foreach) as collection changes with spawns
             for (int i = 0; i < sentries.Count; i++)
             {
@@ -75,6 +88,7 @@ namespace TRANSLATION3
                 }
             }
 
+            // ANIMATIONS
             for (int i = 0; i < animations.Count; i++)
             {
                 animations.ElementAt(i).older();
@@ -88,11 +102,24 @@ namespace TRANSLATION3
                 }
             }
 
+            // HUD ELEMENTS
+            for (int i = 0; i < elements.Count; i++)
+            {
+                HUDElement e = elements.ElementAt(i);
+                e.older();
+
+                if (e.getAge() == 0)
+                {
+                    elements.RemoveAt(i);
+                    i--;
+                }
+            }
+
             camera.follow();
 
             if (outOfWorld())
             {
-                main.generateLevel();
+                main.generateLevel(false);
             }
 
             if (!finished)
@@ -248,6 +275,29 @@ namespace TRANSLATION3
                         640 + (((o.X + l.X - 10) - 640) / d),
                         360 + (((o.Y + l.Y - 10) - 360) / d), 20 / d, 20 / d);
                 }
+
+                // HUD Elements
+                foreach (HUDElement element in elements)
+                {
+                    Bitmap h = element.draw();
+                    Point hSpot = element.location;
+
+                    switch (element.alignment)
+                    {
+                        case HUDElement.Alignment.CENTER:
+                            g.DrawImage(h, hSpot.X - (h.Width / 2),
+                                hSpot.Y - (h.Height / 2));
+                            break;
+                        case HUDElement.Alignment.LEFT:
+                            g.DrawImage(h, hSpot.X,
+                                hSpot.Y - (h.Height / 2));
+                            break;
+                        case HUDElement.Alignment.RIGHT:
+                            g.DrawImage(h, hSpot.X - h.Width,
+                                hSpot.Y - (h.Height / 2));
+                            break;
+                    }
+                }
             }
 
             return render;
@@ -304,6 +354,16 @@ namespace TRANSLATION3
             }
         }
 
+        public String getName()
+        {
+            return name;
+        }
+
+        public String getNote()
+        {
+            return note;
+        }
+
         public void addAnimation(Animation animation)
         {
             animations.Add(animation);
@@ -339,6 +399,28 @@ namespace TRANSLATION3
         public List<Animation> getAnimations()
         {
             return animations;
+        }
+
+        public void addHUDElement(HUDElement element)
+        {
+            elements.Add(element);
+        }
+
+        public void startUpHUD()
+        {
+            if (name != "")
+            {
+                Bitmap nameImage = Font.VIGILANT.print(name, 8, Color.FromArgb(255, 0, 0));
+                addHUDElement(new HUDElement(new Point(640, 60),
+                    HUDElement.Alignment.CENTER, 75, nameImage));
+            }
+
+            if (note != "")
+            {
+                Bitmap nameImage = Font.VIGILANT.print(note, 2, Color.FromArgb(255, 0, 0));
+                addHUDElement(new HUDElement(new Point(640, 660),
+                    HUDElement.Alignment.CENTER, 75, nameImage));
+            }
         }
 
         public void setCamera(Camera.FollowMode followMode)

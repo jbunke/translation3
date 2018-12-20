@@ -1,6 +1,6 @@
 2 1
-
+The Ropes, pt. III
 1000 1000 200
 1300 1000 200
-
+The player can move side to side.
 PUSH 6 NONE 1

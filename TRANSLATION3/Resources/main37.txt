@@ -1,5 +1,5 @@
 9 8
-
+Break The Wheel
 1000 1000 50
 500 1000 150
 1500 1000 150
@@ -9,7 +9,7 @@
 1375 625 150
 625 1375 150
 1375 1375 150
-
+Keep the net gravity in mind.
 GRAV_RED 6 NONE 1
 GRAV_RED 8 NONE 2
 GRAV_RED 10 NONE 3

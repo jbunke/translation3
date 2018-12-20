@@ -22,7 +22,7 @@ namespace TRANSLATION3
             TEMPORARY
         }
 
-        public Animation(Permanence permanence, Color color, Point location)
+        public Animation(Permanence permanence, Color color, Point location, int flag)
         {
             this.permanence = permanence;
             this.color = color;
@@ -30,7 +30,7 @@ namespace TRANSLATION3
             this.age = 0;
 
             if (permanence == Permanence.PERMANENT)
-                generateBitmap();
+                generateBitmap(flag);
         }
 
         public int getAge() { return age; }
@@ -45,17 +45,18 @@ namespace TRANSLATION3
 
         public void older() { age++; }
 
-        public void generateBitmap()
+        public void generateBitmap(int flag)
         {
-            bitmap = new Bitmap(80, 80);
-            for (int x = 0; x < 80; x += 4)
+            int s = Math.Max(40, flag);
+            bitmap = new Bitmap(s * 2, s * 2);
+            for (int x = 0; x < s * 2; x += 4)
             {
-                for (int y = 0; y < 80; y += 4)
+                for (int y = 0; y < s + 20; y += 4)
                 {
                     Random random = new Random(Guid.NewGuid().GetHashCode());
-                    int seed = random.Next(0, 40);
+                    int seed = random.Next(0, s);
                     bool draw = MathExt.Distance(new Point(x, y),
-                        new Point(40, 40)) < seed;
+                        new Point(s, s)) < seed;
                     if (draw)
                     {
                         Random col = new Random(Guid.NewGuid().GetHashCode());

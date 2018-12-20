@@ -1,8 +1,8 @@
 3 2
-
+The Ropes, pt. VII
 1000 1000 200
 1300 1000 100
 1600 1000 100
-
+Sight-dependent abilities compound when activated simultaneously.
 PULL -10 NONE 1
 PULL -10 NONE 2

@@ -14,7 +14,7 @@ namespace TRANSLATION3
             Bitmap bitmap = new Bitmap(1280, 720);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
-                g.FillRectangle(new SolidBrush(Color.FromArgb(20, 20, 20)), 0, 0, 1280, 720);
+                g.FillRectangle(new SolidBrush(Color.FromArgb(0, 0, 0)), 0, 0, 1280, 720);
             }
             return bitmap;
         }
@@ -24,7 +24,7 @@ namespace TRANSLATION3
             Bitmap bitmap = new Bitmap(1280, 720);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
-                g.FillRectangle(new SolidBrush(Color.FromArgb(20, 20, 20)), 0, 0, 1280, 720);
+                g.FillRectangle(new SolidBrush(Color.FromArgb(0, 0, 0)), 0, 0, 1280, 720);
             }
             return bitmap;
         }

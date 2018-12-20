@@ -1,0 +1,8 @@
+3 2
+Push & Pull ++
+1000 1000 200
+1400 1000 200
+600 1000 200
+Teleport jumps can be chained.
+EXPAND -14 NONE 1
+HORZ_MAGNET 10 NONE 2

@@ -1,0 +1,6 @@
+2 1
+The Ropes, pt. IX
+1000 1000 200
+1000 1400 200
+Some sentries have abilities that do not rely on seeing the player.
+GRAV_RED 10 NONE 1

@@ -1,6 +1,6 @@
 2 1
-
+The Ropes, pt. V
 1000 1000 200
 1450 1000 200
-
+Different types of sentries have different abilities.
 MOVE 6 NONE 1

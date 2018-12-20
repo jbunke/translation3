@@ -65,7 +65,7 @@ namespace TRANSLATION3
                     {
                         gAcceleration = 30;
                         level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
-                            Color.FromArgb(255, 0, 0), location));
+                            Color.FromArgb(255, 0, 0), location, 0));
                     }
                 }
 
@@ -80,7 +80,7 @@ namespace TRANSLATION3
                     {
                         gAcceleration -= 30;
                         level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
-                            Color.FromArgb(255, 0, 0), location));
+                            Color.FromArgb(255, 0, 0), location, 0));
                     }
                 }
 
@@ -124,7 +124,7 @@ namespace TRANSLATION3
                     isTele = false;
                     teleport();
                     level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
-                        Color.FromArgb(255, 0, 0), location));
+                        Color.FromArgb(255, 0, 0), location, 0));
                 }
 
                 if (e.KeyCode == controls[4])
@@ -138,7 +138,7 @@ namespace TRANSLATION3
                     // LOAD
                     location = saveLocation;
                     level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
-                        Color.FromArgb(255, 0, 0), location));
+                        Color.FromArgb(255, 0, 0), location, 0));
                 }
 
                 if (e.KeyCode == controls[7])
@@ -169,9 +169,8 @@ namespace TRANSLATION3
                 telePhase++; // lateral teleportation is capped
 
             gravity();
-
             checkCrush();
-
+            
             // TODO: wrapping?? and reset
         }
         
@@ -263,9 +262,10 @@ namespace TRANSLATION3
                 {
                     sentry.crush();
                     level.addAnimation(new Animation(Animation.Permanence.PERMANENT,
-                        Render.sentryColor(sentry), sentry.getLocation()));
+                        Render.sentryColor(sentry), sentry.getLocation(),
+                        gAcceleration * -2));
                     level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
-                        Render.sentryColor(sentry), sentry.getLocation()));
+                        Render.sentryColor(sentry), sentry.getLocation(), 0));
                 }
             }
         }

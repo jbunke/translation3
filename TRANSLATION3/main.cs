@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TRANSLATION3.Properties;
 
 namespace TRANSLATION3
 {
@@ -19,10 +20,14 @@ namespace TRANSLATION3
         private GameSettings gameSettings = GameSettings.defaultSettings();
         private int playerc = 1;
 
-        // TODO: pause
+        // CINEMATIC
+        private Cinematic cinematic;
+
+        // PAUSE
         private String pauseScreen;
         private MenuFrame pauseFrame;
 
+        // GAME
         private String levelId;
         private Level level;
         private List<String> campaign;
@@ -37,11 +42,13 @@ namespace TRANSLATION3
 
         private void main_Load(object sender, EventArgs e)
         {
+            // TECHNICALS
             this.Location = new Point(10, 10);
+            this.Cursor = new Cursor(Resources.mousepointer.Handle);
 
-            // PAUSE CONTEXT
-            pauseScreen = "pause";
-            pauseFrame = MenuFrame.fromString(pauseScreen, this);
+            // CINEMATIC
+            mode = Mode.CINEMATIC;
+            cinematic = Cinematic.fromString("startup", this);
 
             // APPLY SETTINGS
             gameSettings = GameSettings.defaultSettings();
@@ -58,17 +65,17 @@ namespace TRANSLATION3
             //campaign.Add("main38");
             //campaign.Add("main50");
             //campaign.Add("main75");
-            campaign.Add("main76");
+            //campaign.Add("main76");
             //campaign.Add("main77");
             
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 24; i++)
             {
                 campaign.Add("main" + i);
-                campaign.Add("classic" + i);
-                campaign.Add("classic" + (i + 8));
+                //campaign.Add("classic" + i);
+                //campaign.Add("classic" + (i + 8));
             }
-            campaign.Add("behemoth");
-            generateLevel();
+            //campaign.Add("behemoth");
+            generateLevel(true);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -93,6 +100,11 @@ namespace TRANSLATION3
                     break;
             }
             pictureBox1.Image = canvas;
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            this.Cursor = new Cursor(Resources.mousepointer.Handle);
         }
 
         private void main_KeyDown(object sender, KeyEventArgs e)
@@ -146,6 +158,16 @@ namespace TRANSLATION3
                     canvas = render();
                     pictureBox1.Image = canvas;
                     break;
+                case Mode.CINEMATIC:
+                    if (cinematic.update())
+                    {
+                        canvas = cinematic.draw();
+                        pictureBox1.Image = canvas;
+                    } else
+                    {
+                        cinematic.link();
+                    }
+                    break;
             }
         }
 
@@ -175,11 +197,16 @@ namespace TRANSLATION3
             }
         }
 
-        public void generateLevel()
+        public void generateLevel(bool startup)
         {
             levelId = campaign.ElementAt(campaignIndex);
             level = SavedLevels.fetchLevel(levelId, playerc,
                 gameSettings.getFollowMode(), this);
+
+            if (startup)
+            {
+                level.startUpHUD();
+            }
         }
 
         public void levelComplete()
@@ -187,7 +214,7 @@ namespace TRANSLATION3
             if (campaignIndex + 1 < campaign.Count)
                 campaignIndex++;
             // TODO: go right to next level for now; until transitions / cinematics
-            generateLevel();
+            generateLevel(true);
         }
 
         public void pause()
@@ -226,6 +253,11 @@ namespace TRANSLATION3
         public Size getSize()
         {
             return pictureBox1.Size;
+        }
+
+        public void setMode(Mode mode)
+        {
+            this.mode = mode;
         }
 
         public void setPauseFrame(String s)

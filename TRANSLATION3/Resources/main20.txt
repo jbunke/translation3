@@ -1,8 +1,8 @@
 3 2
-
+Continental Drift
 1000 1000 200
 700 1000 200
 700 800 200
-
+Look alive!
 EXPAND 10 NONE 1
 PUSH -6 NONE 2

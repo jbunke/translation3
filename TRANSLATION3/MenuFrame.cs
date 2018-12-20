@@ -27,6 +27,27 @@ namespace TRANSLATION3
             switch (s.ToLower())
             {
                 case "pause":
+                    String levelName = main.getLevel().getName().ToUpper();
+                    String levelNote = main.getLevel().getNote().ToUpper();
+
+                    if (levelName != "")
+                    {
+                        if (levelNote == "") {
+                            levelNote = " ";
+                        }
+                        pauseObjs = new MenuObject[] {
+                    new MenuObject(false, levelName, 8, new Point(640, 100),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, levelNote, 2, new Point(640, 150),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "RESUME", 4, new Point(640, 260),
+                        MenuObject.Task.UNPAUSE, null, main),
+                    new MenuObject(true, "SETTINGS", 4, new Point(640, 360),
+                        MenuObject.Task.SET_PAUSE, "settings-pause", main),
+                    new MenuObject(true, "QUIT", 4, new Point(640, 460),
+                        MenuObject.Task.SET_PAUSE, "are-you-sure", main) };
+                        return new MenuFrame(pauseObjs, main);
+                    }
                     pauseObjs = new MenuObject[] {
                     new MenuObject(false, "PAUSED", 8, new Point(640, 100),
                         MenuObject.Task.NULL, null, main),
@@ -242,32 +263,36 @@ namespace TRANSLATION3
                             if (k.KeyCode == up[0] || k.KeyCode == up[1])
                             {
                                 // UP
-                                direction = cand.Y < old.Y &&
-                                    Math.Abs(cand.Y - old.Y) >
-                                    Math.Abs(cand.X - old.X);
+                                direction = cand.Y < old.Y;
+                                //direction = cand.Y < old.Y &&
+                                //    Math.Abs(cand.Y - old.Y) >
+                                //    Math.Abs(cand.X - old.X);
                             } else if (k.KeyCode == down[0] ||
                                 k.KeyCode == down[1])
                             {
                                 // DOWN
-                                direction = cand.Y > old.Y &&
-                                    Math.Abs(cand.Y - old.Y) >
-                                    Math.Abs(cand.X - old.X);
+                                direction = cand.Y > old.Y;
+                                //direction = cand.Y > old.Y &&
+                                //    Math.Abs(cand.Y - old.Y) >
+                                //    Math.Abs(cand.X - old.X);
                             }
                             else if (k.KeyCode == left[0] ||
                               k.KeyCode == left[1])
                             {
                                 // LEFT
-                                direction = cand.X < old.X &&
-                                    Math.Abs(cand.Y - old.Y) <
-                                    Math.Abs(cand.X - old.X);
+                                direction = cand.X < old.X;
+                                //direction = cand.X < old.X &&
+                                //    Math.Abs(cand.Y - old.Y) <
+                                //    Math.Abs(cand.X - old.X);
                             }
                             else if (k.KeyCode == right[0] ||
                               k.KeyCode == right[1])
                             {
                                 // RIGHT
-                                direction = cand.X > old.X &&
-                                    Math.Abs(cand.Y - old.Y) <
-                                    Math.Abs(cand.X - old.X);
+                                direction = cand.X > old.X;
+                                //direction = cand.X > old.X &&
+                                //    Math.Abs(cand.Y - old.Y) <
+                                //    Math.Abs(cand.X - old.X);
                             }
 
                             if (direction &&

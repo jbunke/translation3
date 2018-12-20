@@ -38,7 +38,7 @@ namespace TRANSLATION3
         public static GameSettings defaultSettings()
         {
             return new GameSettings(Camera.FollowMode.STEADY,
-                20, ControlMode.WASD, WindowMode.FULLSCREEN);
+                20, ControlMode.WASD, WindowMode.WINDOWED);
         }
 
         public int getPeriod() { return period; }

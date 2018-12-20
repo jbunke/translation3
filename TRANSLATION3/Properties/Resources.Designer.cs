@@ -61,6 +61,16 @@ namespace TRANSLATION3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _redsquaregames {
+            get {
+                object obj = ResourceManager.GetObject("_redsquaregames", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 2 1
         ///
         ///480 500 200
@@ -360,10 +370,10 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 2 1
-        ///
+        ///The Ropes, pt. I
         ///1000 1000 200
         ///1000 800 200
-        ///
+        ///Jump and land on the sentry.
         ///PUSH 6 NONE 1
         ///.
         /// </summary>
@@ -375,10 +385,10 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 2 1
-        ///
+        ///The Ropes, pt. II
         ///1000 1000 200
         ///1000 1200 200
-        ///
+        ///Drop and land on the sentry.
         ///PUSH 6 NONE 1
         ///.
         /// </summary>
@@ -389,8 +399,25 @@ namespace TRANSLATION3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 3 2
+        ///Defying Gravity
+        ///1000 1000 200
+        ///800 700 200
+        ///800 1400 200
+        ///The camera has a zoom toggle.
+        ///GRAV_RED 10 NONE 1
+        ///GRAV_INC -6 NONE 2
+        ///.
+        /// </summary>
+        internal static string main10 {
+            get {
+                return ResourceManager.GetString("main10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 15 4
-        ///
+        ///The Nest
         ///1000 1000 200
         ///600 600 200
         ///600 800 200
@@ -420,11 +447,74 @@ namespace TRANSLATION3.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2 1
+        ///   Looks up a localized string similar to 4 1
+        ///The Invisible Hand
+        ///1000 1000 300
+        ///1500 800 300
+        ///2000 600 300
+        ///2500 400 300
         ///
+        ///HORZ_MAGNET 14 NONE 3
+        ///.
+        /// </summary>
+        internal static string main11 {
+            get {
+                return ResourceManager.GetString("main11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3 2
+        ///Push &amp; Pull ++
+        ///1000 1000 200
+        ///1400 1000 200
+        ///600 1000 200
+        ///Teleport jumps can be chained.
+        ///EXPAND -14 NONE 1
+        ///HORZ_MAGNET 10 NONE 2
+        ///.
+        /// </summary>
+        internal static string main12 {
+            get {
+                return ResourceManager.GetString("main12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12 5
+        ///The Great Dictator
+        ///1000 1000 200
+        ///800 800 100
+        ///800 1200 100
+        ///1200 800 100
+        ///1200 1200 100
+        ///1400 600 100
+        ///1400 200 100
+        ///1600 400 200
+        ///1800 600 100
+        ///1800 200 100
+        ///1000 400 300
+        ///1600 1000 300
+        ///If you know, you know ;P
+        ///PULL 8 NONE 10
+        ///PULL -8 NONE 11
+        ///NECROMANCER 4 NONE 7
+        ///EXPAND 8 NONE 1
+        ///EXPAND -8 NONE 8
+        ///.
+        /// </summary>
+        internal static string main13 {
+            get {
+                return ResourceManager.GetString("main13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 1
+        ///The Ropes, pt. III
         ///1000 1000 200
         ///1300 1000 200
-        ///
+        ///The player can move side to side.
         ///PUSH 6 NONE 1
         ///.
         /// </summary>
@@ -436,11 +526,11 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 3 2
-        ///
+        ///Continental Drift
         ///1000 1000 200
         ///700 1000 200
         ///700 800 200
-        ///
+        ///Look alive!
         ///EXPAND 10 NONE 1
         ///PUSH -6 NONE 2
         ///.
@@ -453,10 +543,10 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 2 1
-        ///
+        ///The Ropes, pt. IV
         ///1000 1000 200
         ///1600 1000 200
-        ///
+        ///Teleportation!
         ///PUSH 6 NONE 1
         ///.
         /// </summary>
@@ -468,7 +558,7 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 7 6
-        ///
+        ///Conveyor Belt
         ///1000 700 100
         ///1000 1000 200
         ///800 1000 200
@@ -476,7 +566,7 @@ namespace TRANSLATION3.Properties {
         ///2800 1300 200
         ///800 1300 200
         ///2600 1300 200
-        ///
+        ///Sentries can create dead zones if their powers cancel out.
         ///MOVE 6 NONE 1
         ///SHOVE 10 NONE 2
         ///SHOVE -10 NONE 3
@@ -493,13 +583,13 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 5 2
-        ///
+        ///Line of Sight
         ///1000 1000 100
         ///600 1000 250
         ///1400 1000 250
         ///200 1000 250
         ///1800 1000 250
-        ///
+        ///Fleeing sentries cannot flee to the starting platform.
         ///FLEE 10 NONE 1
         ///FLEE -12 NONE 2
         ///.
@@ -512,7 +602,7 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 10 3
-        ///
+        ///The Pull
         ///1000 -1200 200
         ///1400 -1100 200
         ///1800 -1100 200
@@ -523,7 +613,7 @@ namespace TRANSLATION3.Properties {
         ///3800 -1500 200
         ///4200 -1500 200
         ///4600 -1600 200
-        ///
+        ///An even number of pink sentries create dead zones.
         ///HORZ_MAGNET -10 NONE 3
         ///HORZ_MAGNET -10 NONE 6
         ///HORZ_MAGNET -10 NONE 9
@@ -537,7 +627,7 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 9 8
-        ///
+        ///Break The Wheel
         ///1000 1000 50
         ///500 1000 150
         ///1500 1000 150
@@ -547,7 +637,7 @@ namespace TRANSLATION3.Properties {
         ///1375 625 150
         ///625 1375 150
         ///1375 1375 150
-        ///
+        ///Keep the net gravity in mind.
         ///GRAV_RED 6 NONE 1
         ///GRAV_RED 8 NONE 2
         ///GRAV_RED 10 NONE 3
@@ -566,7 +656,7 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 3 2
-        ///
+        ///The Springboard
         ///1000 1000 200
         ///700 750 200
         ///700 1250 200
@@ -583,10 +673,10 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 2 1
-        ///
+        ///The Ropes, pt. V
         ///1000 1000 200
         ///1450 1000 200
-        ///
+        ///Different types of sentries have different abilities.
         ///MOVE 6 NONE 1
         ///.
         /// </summary>
@@ -598,7 +688,7 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 3 2
-        ///
+        ///The Ropes, pt. VI
         ///1000 1000 200
         ///800 800 200
         ///1200 1200 200
@@ -615,12 +705,12 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 4 2
-        ///
+        ///On Its Head
         ///1000 1000 100
         ///800 900 200
         ///1200 700 200
         ///1000 600 100
-        ///
+        ///Meet your maker.
         ///PUSH 10 NONE 1
         ///GOD 14 NONE 2
         ///.
@@ -633,11 +723,11 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 3 2
-        ///
+        ///The Ropes, pt. VII
         ///1000 1000 200
         ///1300 1000 100
         ///1600 1000 100
-        ///
+        ///Sight-dependent abilities compound when activated simultaneously.
         ///PULL -10 NONE 1
         ///PULL -10 NONE 2
         ///.
@@ -650,10 +740,10 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 2 1
-        ///
+        ///The Ropes, pt. VIII
         ///1000 1000 200
         ///1000 650 200
-        ///
+        ///Save and load your position with your motion preserved.
         ///PUSH 6 NONE 1
         ///.
         /// </summary>
@@ -665,7 +755,7 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 7 6
-        ///
+        ///Necromancer&apos;s Curse, pt. I
         ///1000 1000 200
         ///0 1000 200
         ///2000 1000 200
@@ -689,7 +779,7 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 15 2
-        ///
+        ///Necromancer&apos;s Curse, pt. II
         ///1000 1000 100
         ///500 1000 300
         ///0 1000 100
@@ -705,7 +795,7 @@ namespace TRANSLATION3.Properties {
         ///1000 1200 300
         ///1500 1200 100
         ///2000 1200 300
-        ///
+        ///A matter of priority
         ///SPAWN 12 SPAWN 5
         ///NECROMANCER -10 NONE 14
         ///.
@@ -718,7 +808,7 @@ namespace TRANSLATION3.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 9 8
-        ///
+        ///Necromancer&apos;s Curse, pt. III
         ///1000 1000 200
         ///500 800 200
         ///1000 800 100
@@ -742,6 +832,48 @@ namespace TRANSLATION3.Properties {
         internal static string main77 {
             get {
                 return ResourceManager.GetString("main77", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 1
+        ///The Ropes, pt. IX
+        ///1000 1000 200
+        ///1000 1400 200
+        ///Some sentries have abilities that do not rely on seeing the player.
+        ///GRAV_RED 10 NONE 1
+        ///.
+        /// </summary>
+        internal static string main8 {
+            get {
+                return ResourceManager.GetString("main8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3 2
+        ///The Ropes, pt. X
+        ///1000 1000 200
+        ///700 1000 100
+        ///1200 1150 200
+        ///Sentries can alter physics, gravity, the stage, and the game&apos;s reality itself.
+        ///PUSH -6 NONE 1
+        ///HORZ_MAGNET 8 NONE 2
+        ///.
+        /// </summary>
+        internal static string main9 {
+            get {
+                return ResourceManager.GetString("main9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon mousepointer {
+            get {
+                object obj = ResourceManager.GetObject("mousepointer", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -771,6 +903,16 @@ namespace TRANSLATION3.Properties {
         internal static System.Drawing.Bitmap symbols2_vigilant_2_boldface {
             get {
                 object obj = ResourceManager.GetObject("symbols2_vigilant_2_boldface", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap t3logo_664_164 {
+            get {
+                object obj = ResourceManager.GetObject("t3logo_664_164", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

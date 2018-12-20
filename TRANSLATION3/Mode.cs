@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace TRANSLATION3
 {
-    enum Mode
+    public enum Mode
     {
         GAME,
         PAUSE,
-        MENU
+        MENU,
+        CINEMATIC
     }
 }

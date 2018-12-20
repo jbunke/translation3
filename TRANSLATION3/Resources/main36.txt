@@ -1,5 +1,5 @@
 10 3
-
+The Pull
 1000 -1200 200
 1400 -1100 200
 1800 -1100 200
@@ -10,7 +10,7 @@
 3800 -1500 200
 4200 -1500 200
 4600 -1600 200
-
+An even number of pink sentries create dead zones.
 HORZ_MAGNET -10 NONE 3
 HORZ_MAGNET -10 NONE 6
 HORZ_MAGNET -10 NONE 9

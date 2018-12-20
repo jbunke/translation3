@@ -1,5 +1,5 @@
 15 2
-
+Necromancer's Curse, pt. II
 1000 1000 100
 500 1000 300
 0 1000 100
@@ -15,6 +15,6 @@
 1000 1200 300
 1500 1200 100
 2000 1200 300
-
+A matter of priority
 SPAWN 12 SPAWN 5
 NECROMANCER -10 NONE 14

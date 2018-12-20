@@ -8,7 +8,7 @@ using TRANSLATION3.Properties;
 
 namespace TRANSLATION3
 {
-    class Font
+    public class Font
     {
         public static Font VIGILANT = new Font("VIGILANT",
                 Resources.uppercase_vigilant_2_boldface,
