@@ -77,6 +77,8 @@ namespace TRANSLATION3
 
         public Bitmap print(String text, int size, Color c)
         {
+            if (text == "")
+                text += " ";
             return recolor(c, print(text, size), size);
         }
 

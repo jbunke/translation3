@@ -82,7 +82,7 @@ namespace TRANSLATION3
                         new CineFrame(10, black),
                         new CineFrame(100, rsgScreen),
                         new CineFrame(100, logoScreen) },
-                        Mode.GAME, main);
+                        Mode.MENU, main);
             }
         }
     }

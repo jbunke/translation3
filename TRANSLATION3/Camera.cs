@@ -9,7 +9,7 @@ namespace TRANSLATION3
 {
     public class Camera
     {
-        private Player target;
+        private HasLocation target;
         private Point location;
         private bool zoomedOut;
         private FollowMode followMode = FollowMode.STEADY;
@@ -26,7 +26,7 @@ namespace TRANSLATION3
             this.followMode = followMode;
         }
 
-        public Camera(FollowMode followMode, Player target)
+        public Camera(FollowMode followMode, HasLocation target)
         {
             this.followMode = followMode;
             setTarget(target);
@@ -51,13 +51,13 @@ namespace TRANSLATION3
             }
         }
 
-        public void setTarget(Player target)
+        public void setTarget(HasLocation target)
         {
             this.target = target;
             this.location = new Point(target.getLocation().X, target.getLocation().Y);
         }
 
-        public Player getTarget()
+        public HasLocation getTarget()
         {
             return target;
         }

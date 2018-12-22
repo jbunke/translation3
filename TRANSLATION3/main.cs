@@ -27,6 +27,13 @@ namespace TRANSLATION3
         private String pauseScreen;
         private MenuFrame pauseFrame;
 
+        // MENU
+        private String menuScreen;
+        private MenuFrame menuFrame;
+
+        // EDITOR
+        private EditorLevel editor;
+
         // GAME
         private String levelId;
         private Level level;
@@ -45,6 +52,12 @@ namespace TRANSLATION3
             // TECHNICALS
             this.Location = new Point(10, 10);
             this.Cursor = new Cursor(Resources.mousepointer.Handle);
+
+            // INITIAL MENU
+            menuScreen = "main";
+
+            // LEVEL EDITOR
+            editor = EditorLevel.newEditor(this);
 
             // CINEMATIC
             mode = Mode.CINEMATIC;
@@ -67,8 +80,8 @@ namespace TRANSLATION3
             //campaign.Add("main75");
             //campaign.Add("main76");
             //campaign.Add("main77");
-            
-            for (int i = 0; i < 24; i++)
+            //campaign.Add("main74");
+            for (int i = 0; i < 16; i++)
             {
                 campaign.Add("main" + i);
                 //campaign.Add("classic" + i);
@@ -85,6 +98,9 @@ namespace TRANSLATION3
                 case Mode.PAUSE:
                     pauseFrame.actionHandler();
                     break;
+                case Mode.MENU:
+                    menuFrame.actionHandler();
+                    break;
             }
         }
 
@@ -96,6 +112,12 @@ namespace TRANSLATION3
                     if (pauseFrame.update(MenuFrame.Cause.MOUSE_MOVE, e, null))
                     {
                         canvas = pauseFrame.render();
+                    }
+                    break;
+                case Mode.MENU:
+                    if (menuFrame.update(MenuFrame.Cause.MOUSE_MOVE, e, null))
+                    {
+                        canvas = menuFrame.render();
                     }
                     break;
             }
@@ -112,8 +134,10 @@ namespace TRANSLATION3
             switch (mode)
             {
                 case Mode.GAME:
-                    Debug.Assert(level != null);
                     level.keyHandler(e, true);
+                    break;
+                case Mode.EDITOR:
+                    editor.keyHandler(e, true);
                     break;
             }
         }
@@ -123,8 +147,10 @@ namespace TRANSLATION3
             switch (mode)
             {
                 case Mode.GAME:
-                    Debug.Assert(level != null);
                     level.keyHandler(e, false);
+                    break;
+                case Mode.EDITOR:
+                    editor.keyHandler(e, false);
                     break;
                 case Mode.PAUSE:
                     if (e.KeyCode == gameSettings.getControls()[8])
@@ -146,6 +172,22 @@ namespace TRANSLATION3
                         break;
                     }
                     break;
+                case Mode.MENU:
+                    if (e.KeyCode == gameSettings.getControls()[6] ||
+                        e.KeyCode == Keys.Enter)
+                    {
+                        menuFrame.actionHandler();
+                    }
+                    else
+                    {
+                        if (menuFrame.update(MenuFrame.Cause.KEY_PRESS, null, e))
+                        {
+                            canvas = menuFrame.render();
+                            pictureBox1.Image = canvas;
+                        }
+                        break;
+                    }
+                    break;
             }
         }
 
@@ -154,8 +196,13 @@ namespace TRANSLATION3
             switch (mode)
             {
                 case Mode.GAME:
-                    update();
-                    canvas = render();
+                    level.update();
+                    canvas = level.render();
+                    pictureBox1.Image = canvas;
+                    break;
+                case Mode.EDITOR:
+                    editor.update();
+                    canvas = editor.render();
                     pictureBox1.Image = canvas;
                     break;
                 case Mode.CINEMATIC:
@@ -197,15 +244,31 @@ namespace TRANSLATION3
             }
         }
 
+        public void playEditorLevel()
+        {
+            campaignIndex = 0;
+            campaign = new List<string> { "editor" };
+            levelId = campaign.ElementAt(campaignIndex);
+            level = Level.fromEditor(editor, this);
+            level.startUpHUD();
+            setMode(Mode.GAME);
+        }
+
         public void generateLevel(bool startup)
         {
-            levelId = campaign.ElementAt(campaignIndex);
-            level = SavedLevels.fetchLevel(levelId, playerc,
-                gameSettings.getFollowMode(), this);
-
-            if (startup)
+            if (levelId == "editor")
             {
-                level.startUpHUD();
+                playEditorLevel();
+            } else
+            {
+                levelId = campaign.ElementAt(campaignIndex);
+                level = SavedLevels.fetchLevel(levelId, playerc,
+                    gameSettings.getFollowMode(), this);
+
+                if (startup)
+                {
+                    level.startUpHUD();
+                }
             }
         }
 
@@ -214,7 +277,13 @@ namespace TRANSLATION3
             if (campaignIndex + 1 < campaign.Count)
                 campaignIndex++;
             // TODO: go right to next level for now; until transitions / cinematics
-            generateLevel(true);
+            if (levelId == "editor")
+            {
+                setMode(Mode.EDITOR);
+            } else
+            {
+                generateLevel(true);
+            }
         }
 
         public void pause()
@@ -228,18 +297,7 @@ namespace TRANSLATION3
         {
             this.mode = Mode.GAME;
         }
-
-        private void update()
-        {
-            level.update();
-        }
-
-        private Bitmap render()
-        {
-            // render() is for GAME mode only
-            return level.render();
-        }
-
+        
         public Level getLevel()
         {
             return level;
@@ -255,9 +313,38 @@ namespace TRANSLATION3
             return pictureBox1.Size;
         }
 
+        public Mode getMode()
+        {
+            return mode;
+        }
+
         public void setMode(Mode mode)
         {
             this.mode = mode;
+
+            switch (mode)
+            {
+                case Mode.MENU:
+                    setMenuFrame(menuScreen);
+                    break;
+                case Mode.PAUSE:
+                    setPauseFrame(pauseScreen);
+                    break;
+            }
+        }
+
+        public void setMenuFrame(String s)
+        {
+            menuScreen = s;
+            refreshMenuFrame();
+        }
+
+        public void refreshMenuFrame()
+        {
+            menuFrame = MenuFrame.fromString(menuScreen, this);
+
+            canvas = menuFrame.render();
+            pictureBox1.Image = canvas;
         }
 
         public void setPauseFrame(String s)

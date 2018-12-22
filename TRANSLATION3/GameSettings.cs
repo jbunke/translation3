@@ -13,6 +13,7 @@ namespace TRANSLATION3
         private int period;
         private ControlMode controlMode;
         private WindowMode windowMode;
+        private HUDStatus hudStatus;
 
         public enum ControlMode
         {
@@ -26,19 +27,26 @@ namespace TRANSLATION3
             FULLSCREEN
         }
 
+        public enum HUDStatus
+        {
+            SHOW,
+            HIDE
+        }
+
         private GameSettings(Camera.FollowMode followMode, int period, 
-            ControlMode controlMode, WindowMode windowMode)
+            ControlMode controlMode, WindowMode windowMode, HUDStatus hudStatus)
         {
             this.followMode = followMode;
             this.period = period;
             this.controlMode = controlMode;
             this.windowMode = windowMode;
+            this.hudStatus = hudStatus;
         }
 
         public static GameSettings defaultSettings()
         {
             return new GameSettings(Camera.FollowMode.STEADY,
-                20, ControlMode.WASD, WindowMode.WINDOWED);
+                20, ControlMode.WASD, WindowMode.FULLSCREEN, HUDStatus.HIDE);
         }
 
         public int getPeriod() { return period; }
@@ -62,6 +70,11 @@ namespace TRANSLATION3
         public WindowMode getWindowMode()
         {
             return windowMode;
+        }
+
+        public HUDStatus getHUDStatus()
+        {
+            return hudStatus;
         }
 
         public ControlMode getControlMode()
@@ -108,6 +121,11 @@ namespace TRANSLATION3
         public void switchWindowMode()
         {
             windowMode = 1 - windowMode;
+        }
+
+        public void switchHUDStatus()
+        {
+            hudStatus = 1 - hudStatus;
         }
 
         public void switchPeriod(int change)

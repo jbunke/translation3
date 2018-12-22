@@ -11,6 +11,7 @@ namespace TRANSLATION3
         GAME,
         PAUSE,
         MENU,
-        CINEMATIC
+        CINEMATIC,
+        EDITOR
     }
 }

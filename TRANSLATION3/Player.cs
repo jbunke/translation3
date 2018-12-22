@@ -8,11 +8,10 @@ using System.Windows.Forms;
 
 namespace TRANSLATION3
 {
-    public class Player
+    public class Player : HasLocation
     {
         private Level level;
-
-        private Point location;
+        
         private int direction = 1;
         private Point lastLocation;
         private Point saveLocation;
@@ -28,6 +27,10 @@ namespace TRANSLATION3
         private int speed = 8;
         private int telePhase = 0;
         private int gAcceleration = 0;
+
+        // EXPERIMENTAL
+        private int combo = 0;
+        private int sinceLast = 0;
 
         public Player() { }
 
@@ -170,8 +173,11 @@ namespace TRANSLATION3
 
             gravity();
             checkCrush();
-            
+
             // TODO: wrapping?? and reset
+            sinceLast++;
+
+            if (sinceLast > 100) combo = 0;
         }
         
         public void setLevel(Level level)
@@ -216,12 +222,7 @@ namespace TRANSLATION3
         {
             saveLocation.Y = y;
         }
-
-        public Point getLocation()
-        {
-            return location;
-        }
-
+        
         public Point getSaveLocation()
         {
             return saveLocation;
@@ -260,12 +261,32 @@ namespace TRANSLATION3
                 if (lastLocation.Y < s.Y && location.Y > s.Y - 20 &&
                     Math.Abs(location.X - s.X) < 20 && sentry.isAlive())
                 {
+                    // SENTRY IS CRUSHED
                     sentry.crush();
+
+                    // ANIMATIONS
                     level.addAnimation(new Animation(Animation.Permanence.PERMANENT,
                         Render.sentryColor(sentry), sentry.getLocation(),
                         gAcceleration * -2));
                     level.addAnimation(new Animation(Animation.Permanence.TEMPORARY,
                         Render.sentryColor(sentry), sentry.getLocation(), 0));
+
+                    // COMBO
+                    sinceLast = 0;
+                    combo++;
+
+                    // HUD ELEMENTS
+                    if (level.getMain().getSettings().getHUDStatus() ==
+                        GameSettings.HUDStatus.SHOW)
+                    {
+                        if (combo > 1)
+                        {
+                            level.addHUDElement(new HUDElement(s,
+                                HUDElement.Alignment.CENTER, 20,
+                                "x" + combo, Font.VIGILANT, 2,
+                                Render.sentryColor(sentry), new Point(0, -4), true));
+                        }
+                    }
                 }
             }
         }

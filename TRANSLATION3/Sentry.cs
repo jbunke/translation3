@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace TRANSLATION3
 {
-    public class Sentry
+    public class Sentry : HasLocation
     {
         private static int NUM_TYPES = 18;
 
         private Type type;
         private Platform platform;
         private Level level;
-        private Point location;
         private int direction;
         private int speed;
         private bool alive;
@@ -86,15 +85,38 @@ namespace TRANSLATION3
             this.location = new Point(platform.getLocation().X,
                 platform.getLocation().Y - 20);
         }
-
-        public Point getLocation()
+        
+        public Platform getPlatform()
         {
-            return location;
+            return platform;
+        }
+
+        public int getSpeed()
+        {
+            return speed;
+        }
+
+        public void changeSpeed(int inc)
+        {
+            speed = MathExt.Bounded(2, speed + inc, 14);
+        }
+
+        public String interpretDirection()
+        {
+            if (direction == -1)
+                return "LEFT";
+
+            return "RIGHT";
         }
 
         public int getDirection()
         {
             return direction;
+        }
+
+        public void setDirection(int direction)
+        {
+            this.direction = direction;
         }
 
         public bool isAlive()
@@ -110,6 +132,20 @@ namespace TRANSLATION3
         public Type getSecondary()
         {
             return secondary;
+        }
+
+        public void nextType()
+        {
+            type++;
+            if ((int)type >= NUM_TYPES)
+                type = 0;
+        }
+
+        public void nextSecondary()
+        {
+            secondary++;
+            if ((int)secondary >= NUM_TYPES)
+                secondary = 0;
         }
 
         public int getCount()
@@ -177,6 +213,12 @@ namespace TRANSLATION3
 
             if (location.X > platform.getLocation().X + (platform.getWidth() / 2))
                 location.X = platform.getLocation().X + (platform.getWidth() / 2) - 10;
+        }
+
+        public void editorAdjust()
+        {
+            location.Y = platform.getLocation().Y - 20;
+            location.X = platform.getLocation().X;
         }
 
         public void behave()

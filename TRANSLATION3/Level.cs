@@ -11,17 +11,17 @@ namespace TRANSLATION3
 {
     public class Level
     {
-        private List<Platform> platforms = new List<Platform>();
-        private List<Player> players = new List<Player>();
-        private List<Sentry> sentries = new List<Sentry>();
-        private List<Animation> animations = new List<Animation>();
-        private List<HUDElement> elements = new List<HUDElement>();
-        private Camera camera;
-        private Bitmap background;
-        private String name = "";
-        private String note = "";
+        protected List<Platform> platforms = new List<Platform>();
+        protected List<Player> players = new List<Player>();
+        protected List<Sentry> sentries = new List<Sentry>();
+        protected List<Animation> animations = new List<Animation>();
+        protected List<HUDElement> elements = new List<HUDElement>();
+        protected Camera camera;
+        protected Bitmap background;
+        protected String name = "";
+        protected String note = "";
 
-        private main main;
+        protected main main;
         private bool finished = false;
         private int countdown = 10;
 
@@ -69,6 +69,71 @@ namespace TRANSLATION3
             this.note = note;
         }
 
+        public Level(main main)
+        {
+            // should only be called by EditorLevel
+            players = new List<Player>() {
+                new Player(main.getSettings().getControlMode()) };
+
+            platforms = new List<Platform>() {
+                new Platform(new Point(1000, 1000), 200),
+                new Platform(new Point(1000, 800), 200) };
+
+            foreach (Player p in players)
+            {
+                p.setLevel(this);
+            }
+
+            Sentry s = new Sentry(Sentry.Type.PUSH, 6);
+            s.setPlatform(platforms.ElementAt(1));
+            s.setLevel(this);
+
+            sentries = new List<Sentry>() { s };
+
+            this.animations = new List<Animation>();
+            this.background = Render.initialBackground();
+            this.camera = new Camera(Camera.FollowMode.STEADY);
+            this.main = main;
+        }
+
+        public static Level fromEditor(EditorLevel editor, main main)
+        {
+            List<Player> playersCopy = new List<Player>();
+
+            foreach (Player p in editor.getPlayers())
+            {
+                playersCopy.Add(new Player());
+            }
+
+            Player[] players = playersCopy.ToArray();
+
+            List<Platform> ps = new List<Platform>();
+            foreach (Platform p in editor.getPlatforms())
+            {
+                ps.Add(new Platform(p.getLocation(), p.getWidth()));
+            }
+            Platform[] platforms = ps.ToArray();
+
+            List<Sentry> ss = new List<Sentry>();
+            foreach (Sentry s in editor.getSentries())
+            {
+                ss.Add(new Sentry(s.getType(),
+                    s.getDirection() * s.getSpeed(), s.getSecondary()));
+            }
+            Sentry[] sentries = ss.ToArray();
+
+            int[] key = new int[sentries.Length];
+
+            for (int i = 0; i < key.Length; i++)
+            {
+                key[i] = editor.getPlatforms().IndexOf(
+                    editor.getSentries().ElementAt(i).getPlatform());
+            }
+
+            return new Level(players, platforms, sentries, key,
+                main.getSettings().getFollowMode(), main);
+        }
+
         public void update()
         {
             // PLAYER(S)
@@ -102,18 +167,7 @@ namespace TRANSLATION3
                 }
             }
 
-            // HUD ELEMENTS
-            for (int i = 0; i < elements.Count; i++)
-            {
-                HUDElement e = elements.ElementAt(i);
-                e.older();
-
-                if (e.getAge() == 0)
-                {
-                    elements.RemoveAt(i);
-                    i--;
-                }
-            }
+            ageHUDElements();
 
             camera.follow();
 
@@ -280,13 +334,26 @@ namespace TRANSLATION3
                 foreach (HUDElement element in elements)
                 {
                     Bitmap h = element.draw();
-                    Point hSpot = element.location;
+                    Point hSpot = element.getLocation();
 
                     switch (element.alignment)
                     {
                         case HUDElement.Alignment.CENTER:
-                            g.DrawImage(h, hSpot.X - (h.Width / 2),
+                            switch (element.cameraDep)
+                            {
+                                case false:
+                                    g.DrawImage(h, hSpot.X - (h.Width / 2),
                                 hSpot.Y - (h.Height / 2));
+                                    break;
+                                case true:
+                                default:
+                                    int x = 640 + ((o.X + hSpot.X -
+                                        (h.Width / 2) - 640) / d);
+                                    int y = 360 + ((o.Y + hSpot.Y -
+                                        (h.Height / 2) - 360) / d);
+                                    g.DrawImage(h, x, y);
+                                    break;
+                            }
                             break;
                         case HUDElement.Alignment.LEFT:
                             g.DrawImage(h, hSpot.X,
@@ -295,6 +362,12 @@ namespace TRANSLATION3
                         case HUDElement.Alignment.RIGHT:
                             g.DrawImage(h, hSpot.X - h.Width,
                                 hSpot.Y - (h.Height / 2));
+                            break;
+                        case HUDElement.Alignment.LEFT_TOP:
+                            g.DrawImage(h, hSpot.X, hSpot.Y);
+                            break;
+                        case HUDElement.Alignment.RIGHT_TOP:
+                            g.DrawImage(h, hSpot.X - h.Width, hSpot.Y);
                             break;
                     }
                 }
@@ -306,6 +379,22 @@ namespace TRANSLATION3
         public void pause()
         {
             main.pause();
+        }
+
+        protected void ageHUDElements()
+        {
+            // HUD ELEMENTS
+            for (int i = 0; i < elements.Count; i++)
+            {
+                HUDElement e = elements.ElementAt(i);
+                e.older();
+
+                if (e.getAge() == 0)
+                {
+                    elements.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         private bool hasFinished()
@@ -412,14 +501,14 @@ namespace TRANSLATION3
             {
                 Bitmap nameImage = Font.VIGILANT.print(name, 8, Color.FromArgb(255, 0, 0));
                 addHUDElement(new HUDElement(new Point(640, 60),
-                    HUDElement.Alignment.CENTER, 75, nameImage));
+                    HUDElement.Alignment.CENTER, 75, nameImage, false));
             }
 
             if (note != "")
             {
                 Bitmap nameImage = Font.VIGILANT.print(note, 2, Color.FromArgb(255, 0, 0));
                 addHUDElement(new HUDElement(new Point(640, 660),
-                    HUDElement.Alignment.CENTER, 75, nameImage));
+                    HUDElement.Alignment.CENTER, 75, nameImage, false));
             }
         }
 
@@ -431,6 +520,11 @@ namespace TRANSLATION3
         public Camera getCamera()
         {
             return camera;
+        }
+
+        public main getMain()
+        {
+            return main;
         }
     }
 }

@@ -510,6 +510,31 @@ namespace TRANSLATION3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 10 3
+        ///Jules Verne
+        ///1000 1000 150
+        ///1000 14000 150
+        ///1000 14200 150
+        ///1000 14400 150
+        ///925 4000 100
+        ///1075 4000 100
+        ///-1200 8000 3500
+        ///2400 8000 3500
+        ///-400 12000 3500
+        ///3200 12000 3500
+        ///Journey to the Center of the Earth
+        ///GRAV_RED 6 NONE 1
+        ///GRAV_INC -12 NONE 2
+        ///GRAV_RED 6 NONE 3
+        ///.
+        /// </summary>
+        internal static string main15 {
+            get {
+                return ResourceManager.GetString("main15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 2 1
         ///The Ropes, pt. III
         ///1000 1000 200
@@ -538,6 +563,37 @@ namespace TRANSLATION3.Properties {
         internal static string main20 {
             get {
                 return ResourceManager.GetString("main20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10 9
+        ///Exploration, pt. I
+        ///0 1000 100
+        ///0 1200 200
+        ///-3000 1000 200
+        ///-3000 1200 200
+        ///3000 1000 200
+        ///3000 1200 200
+        ///0 -2000 200
+        ///0 -1800 200
+        ///0 4000 200
+        ///0 4200 200
+        ///Balance of powers
+        ///GRAV_RED 10 NONE 1
+        ///GRAV_RED 10 NONE 2
+        ///GRAV_RED 10 NONE 4
+        ///GRAV_RED 10 NONE 6
+        ///GRAV_RED 10 NONE 8
+        ///GRAV_INC 10 NONE 3
+        ///GRAV_INC 10 NONE 5
+        ///GRAV_INC 10 NONE 7
+        ///GRAV_INC 10 NONE 9
+        ///.
+        /// </summary>
+        internal static string main25 {
+            get {
+                return ResourceManager.GetString("main25", resourceCulture);
             }
         }
         
@@ -750,6 +806,33 @@ namespace TRANSLATION3.Properties {
         internal static string main7 {
             get {
                 return ResourceManager.GetString("main7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9 6
+        ///Paradise Lost
+        ///1000 1000 50
+        ///1000 0 300
+        ///1000 2000 300
+        ///600 1700 100
+        ///1400 1700 100
+        ///600 300 100
+        ///1400 300 100
+        ///1000 1300 50
+        ///1000 700 50
+        ///Did you know that &quot;pandemonium&quot; was coined by John Milton to mean the capital of Hell?
+        ///GOD 14 NONE 1
+        ///GOD -14 NONE 2
+        ///PULL 10 NONE 3
+        ///PUSH -10 NONE 4
+        ///PUSH 10 NONE 5
+        ///PULL -10 NONE 6
+        ///.
+        /// </summary>
+        internal static string main74 {
+            get {
+                return ResourceManager.GetString("main74", resourceCulture);
             }
         }
         

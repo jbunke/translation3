@@ -1,0 +1,18 @@
+9 6
+Paradise Lost
+1000 1000 50
+1000 0 300
+1000 2000 300
+600 1700 100
+1400 1700 100
+600 300 100
+1400 300 100
+1000 1300 50
+1000 700 50
+Did you know that "pandemonium" was coined by John Milton to mean the capital of Hell?
+GOD 14 NONE 1
+GOD -14 NONE 2
+PULL 10 NONE 3
+PUSH -10 NONE 4
+PUSH 10 NONE 5
+PULL -10 NONE 6

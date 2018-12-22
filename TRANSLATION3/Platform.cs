@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace TRANSLATION3
 {
-    [Serializable] public class Platform
+    [Serializable] public class Platform : HasLocation
     {
-        private Point location;
         private int width;
 
         public Platform(Point location, int width)
@@ -17,12 +16,7 @@ namespace TRANSLATION3
             this.location = location;
             this.width = width;
         }
-
-        public Point getLocation()
-        {
-            return location;
-        }
-
+        
         public int getWidth()
         {
             return width;

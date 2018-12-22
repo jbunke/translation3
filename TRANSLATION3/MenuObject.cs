@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace TRANSLATION3
 {
-    class MenuObject
+    class MenuObject : HasLocation
     {
         private bool canSelect;
         private bool isSelected;
         private Bitmap image;
         private Bitmap selectedImage;
-        private Point location;
         private Task task;
         private String set;
         private main main;
@@ -21,12 +20,14 @@ namespace TRANSLATION3
         public enum Task
         {
             UNPAUSE,
+            SET_MODE,
             SET_PAUSE,
             SET_MENU,
             CLOSE,
             SWITCH_FOLLOW,
             SWITCH_CONTROLS,
             SWITCH_WINDOW,
+            SWITCH_HUD,
             SWITCH_PERIOD,
             NULL
         }
@@ -50,7 +51,16 @@ namespace TRANSLATION3
                 this.set = set;
             } 
         }
-        
+
+        public MenuObject(Point location, Bitmap image, main main)
+        {
+            this.canSelect = false;
+            this.isSelected = false;
+            this.location = location;
+            this.main = main;
+            this.image = image;
+        }
+
         public void doTask()
         {
             switch (task)
@@ -58,11 +68,23 @@ namespace TRANSLATION3
                 case Task.UNPAUSE:
                     main.unpause();
                     break;
+                case Task.SET_MODE:
+                    Mode mode;
+                    Enum.TryParse(set, out mode);
+                    main.setMode(mode);
+                    break;
                 case Task.CLOSE:
                     main.Close();
                     break;
                 case Task.SET_PAUSE:
+                    if (main.getMode() != Mode.PAUSE)
+                        main.setMode(Mode.PAUSE);
                     main.setPauseFrame(set);
+                    break;
+                case Task.SET_MENU:
+                    if (main.getMode() != Mode.MENU)
+                        main.setMode(Mode.MENU);
+                    main.setMenuFrame(set);
                     break;
                 case Task.SWITCH_CONTROLS:
                     main.getSettings().switchControlMode();
@@ -94,14 +116,14 @@ namespace TRANSLATION3
                     main.applySettings();
                     main.refreshPauseFrame();
                     break;
+                case Task.SWITCH_HUD:
+                    main.getSettings().switchHUDStatus();
+                    main.applySettings();
+                    main.refreshPauseFrame();
+                    break;
             }
         }
-
-        public Point getLocation()
-        {
-            return location;
-        }
-
+        
         public bool canBeSelected()
         {
             return canSelect;

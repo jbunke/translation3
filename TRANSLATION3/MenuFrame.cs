@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TRANSLATION3.Properties;
 
 namespace TRANSLATION3
 {
@@ -24,8 +25,48 @@ namespace TRANSLATION3
         public static MenuFrame fromString(String s, main main)
         {
             MenuObject[] pauseObjs;
+
+            // for ordered stuff
+            int mid = 360;
+            int unit = 80;
+            int offset = 30;
+
+            // for two column setups
+            int lc = 480;
+            int rc = 800;
+
             switch (s.ToLower())
             {
+                case "main":
+                    mid = 360;
+                    unit = 100;
+                    MenuObject[] menuObjs = new MenuObject[] {
+                    new MenuObject(new Point(640, 100),
+                        Resources.t3logo_664_164, main),
+                    new MenuObject(true, "PLAY", 4, new Point(640, mid - unit),
+                        MenuObject.Task.SET_MODE, "GAME", main),
+                    new MenuObject(true, "MY CONTENT", 4, new Point(640, mid),
+                        MenuObject.Task.SET_MENU, "my-content", main),
+                    new MenuObject(true, "<TODO>", 4, new Point(640, mid + unit),
+                        MenuObject.Task.SET_MENU, "settings-main", main),
+                    new MenuObject(true, "QUIT", 4, new Point(640, mid + (2 * unit)),
+                        MenuObject.Task.CLOSE, null, main) };
+                    return new MenuFrame(menuObjs, main);
+                case "my-content":
+                    mid = 360;
+                    unit = 100;
+                    menuObjs = new MenuObject[] {
+                    new MenuObject(false, "MY CONTENT", 8, new Point(640, 100),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "CAMPAIGNS", 4, new Point(640, mid - unit),
+                        MenuObject.Task.SET_MENU, "my-campaigns", main),
+                    new MenuObject(true, "LEVELS", 4, new Point(640, mid),
+                        MenuObject.Task.SET_MENU, "my-levels", main),
+                    new MenuObject(true, "LEVEL EDITOR", 4, new Point(640, mid + unit),
+                        MenuObject.Task.SET_MODE, "EDITOR", main),
+                    new MenuObject(true, "BACK", 4, new Point(640, 660),
+                        MenuObject.Task.SET_MENU, "main", main)};
+                    return new MenuFrame(menuObjs, main);
                 case "pause":
                     String levelName = main.getLevel().getName().ToUpper();
                     String levelNote = main.getLevel().getNote().ToUpper();
@@ -44,7 +85,9 @@ namespace TRANSLATION3
                         MenuObject.Task.UNPAUSE, null, main),
                     new MenuObject(true, "SETTINGS", 4, new Point(640, 360),
                         MenuObject.Task.SET_PAUSE, "settings-pause", main),
-                    new MenuObject(true, "QUIT", 4, new Point(640, 460),
+                    new MenuObject(true, "MAIN MENU", 4, new Point(640, 460),
+                        MenuObject.Task.SET_MENU, "main", main),
+                    new MenuObject(true, "QUIT", 4, new Point(640, 560),
                         MenuObject.Task.SET_PAUSE, "are-you-sure", main) };
                         return new MenuFrame(pauseObjs, main);
                     }
@@ -68,51 +111,74 @@ namespace TRANSLATION3
                     new MenuObject(true, "YES", 4, new Point(740, 410),
                         MenuObject.Task.CLOSE, null, main) };
                     return new MenuFrame(pauseObjs, main);
-                case "settings-pause":
+                case "settings-main":
                     GameSettings stgs = main.getSettings();
+                    // TODO
+                    return new MenuFrame(null, main);
+                case "settings-pause":
+                    stgs = main.getSettings();
+                    mid = 360;
+                    unit = 80;
+                    offset = 30;
                     pauseObjs = new MenuObject[] {
                     new MenuObject(false, "SETTINGS", 8, new Point(640, 100),
                         MenuObject.Task.NULL, null, main),
                     new MenuObject(true, "BACK", 4, new Point(640, 660),
                         MenuObject.Task.SET_PAUSE, "pause", main),
-                    new MenuObject(false, "CAMERA FOLLOW MODE", 4, new Point(640, 180),
+                    new MenuObject(false, "CAMERA FOLLOW MODE", 3,
+                        new Point(640, mid - (2 * unit)),
                         MenuObject.Task.NULL, null, main),
-                    new MenuObject(false, stgs.getFollowMode().ToString(), 4, 
-                        new Point(640, 220), MenuObject.Task.NULL, null, main),
-                    new MenuObject(true, "<", 4,
-                        new Point(520, 220), MenuObject.Task.SWITCH_FOLLOW, "-1", main),
-                    new MenuObject(true, ">", 4,
-                        new Point(760, 220), MenuObject.Task.SWITCH_FOLLOW, "1", main),
-                    new MenuObject(false, "WINDOW MODE", 4, new Point(640, 300),
+                    new MenuObject(false, stgs.getFollowMode().ToString(), 3, 
+                        new Point(640, mid - (2 * unit) + offset),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "<", 3,
+                        new Point(520, mid - (2 * unit) + offset),
+                        MenuObject.Task.SWITCH_FOLLOW, "-1", main),
+                    new MenuObject(true, ">", 3,
+                        new Point(760, mid - (2 * unit) + offset),
+                        MenuObject.Task.SWITCH_FOLLOW, "1", main),
+                    new MenuObject(false, "WINDOW MODE", 3,
+                        new Point(640, mid - unit),
                         MenuObject.Task.NULL, null, main),
                     new MenuObject(false, stgs.getWindowMode().ToString(),
-                        4, new Point(640, 340), MenuObject.Task.SET_PAUSE, null, main),
-                    new MenuObject(true, "<", 4, new Point(480, 340),
+                        3, new Point(640, mid - unit + offset),
+                        MenuObject.Task.SET_PAUSE, null, main),
+                    new MenuObject(true, "<", 3, new Point(520, mid - unit + offset),
                         MenuObject.Task.SWITCH_WINDOW, null, main),
-                    new MenuObject(true, ">", 4, new Point(800, 340),
+                    new MenuObject(true, ">", 3, new Point(760, mid - unit + offset),
                         MenuObject.Task.SWITCH_WINDOW, null, main),
-                    new MenuObject(false, "CONTROL MODE", 4, new Point(640, 420),
+                    new MenuObject(false, "HUD", 3, new Point(640, mid),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, stgs.getHUDStatus().ToString(),
+                        3, new Point(640, mid + offset), MenuObject.Task.NULL,
+                        null, main),
+                    new MenuObject(true, "<", 3, new Point(520, mid + offset),
+                        MenuObject.Task.SWITCH_HUD, null, main),
+                    new MenuObject(true, ">", 3, new Point(760, mid + offset),
+                        MenuObject.Task.SWITCH_HUD, null, main),
+                    new MenuObject(false, "CONTROL MODE", 3, new Point(640, mid + unit),
                         MenuObject.Task.NULL, null, main),
                     new MenuObject(true, stgs.getControlMode().ToString(),
-                        4, new Point(640, 460), MenuObject.Task.SET_PAUSE,
+                        3, new Point(640, mid + unit + offset), MenuObject.Task.SET_PAUSE,
                         "controls-pause", main),
-                    new MenuObject(true, "<", 4, new Point(520, 460),
+                    new MenuObject(true, "<", 3, new Point(520, mid + unit + offset),
                         MenuObject.Task.SWITCH_CONTROLS, null, main),
-                    new MenuObject(true, ">", 4, new Point(760, 460),
+                    new MenuObject(true, ">", 3, new Point(760, mid + unit + offset),
                         MenuObject.Task.SWITCH_CONTROLS, null, main),
-                    new MenuObject(false, "GAME SPEED", 4, new Point(640, 540),
+                    new MenuObject(false, "GAME SPEED", 3, new Point(640, mid + (2 * unit)),
                         MenuObject.Task.NULL, null, main),
-                    new MenuObject(false, stgs.gameSpeed(), 4,
-                        new Point(640, 580), MenuObject.Task.NULL, null, main),
-                    new MenuObject(true, "<", 4, new Point(520, 580),
+                    new MenuObject(false, stgs.gameSpeed(), 3,
+                        new Point(640, mid + (2 * unit) + offset),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "<", 3, new Point(520, mid + (2 * unit) + offset),
                         MenuObject.Task.SWITCH_PERIOD, "1", main),
-                    new MenuObject(true, ">", 4, new Point(760, 580),
+                    new MenuObject(true, ">", 3, new Point(760, mid + (2 * unit) + offset),
                         MenuObject.Task.SWITCH_PERIOD, "-1", main) };
                     return new MenuFrame(pauseObjs, main);
                 case "controls-pause":
                     Keys[] controls = main.getSettings().getControls();
-                    int lc = 480;
-                    int rc = 800;
+                    lc = 480;
+                    rc = 800;
                     pauseObjs = new MenuObject[] {
                     new MenuObject(false, "CONTROLS", 8, new Point(640, 100),
                         MenuObject.Task.NULL, null, main),

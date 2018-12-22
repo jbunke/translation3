@@ -62,11 +62,11 @@ namespace TRANSLATION3
                         Random col = new Random(Guid.NewGuid().GetHashCode());
                         int a = col.Next(50, 100);
                         int slide = col.Next(-50, 50);
-                        int r = Math.Min(255, Math.Max(0, color.R + slide));
+                        int r = MathExt.Bounded(0, color.R + slide, 255);
                         slide = col.Next(-50, 50);
-                        int g = Math.Min(255, Math.Max(0, color.G + slide));
+                        int g = MathExt.Bounded(0, color.G + slide, 255);
                         slide = col.Next(-50, 50);
-                        int b = Math.Min(255, Math.Max(0, color.B + slide));
+                        int b = MathExt.Bounded(0, color.B + slide, 255);
 
                         Graphics.FromImage(bitmap).FillRectangle(
                             new SolidBrush(Color.FromArgb(a, r, g, b)),
