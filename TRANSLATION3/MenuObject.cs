@@ -93,6 +93,7 @@ namespace TRANSLATION3
                 case Keys.Oemcomma:
                 case Keys.OemQuestion:
                 case Keys.OemQuotes:
+                case Keys.OemSemicolon:
                     String code = "";
                     if (!k.Shift)
                     {
@@ -113,6 +114,9 @@ namespace TRANSLATION3
                             case Keys.OemQuotes:
                                 code = "'";
                                 break;
+                            case Keys.OemSemicolon:
+                                code = ";";
+                                break;
                         }
                     } else
                     {
@@ -132,6 +136,9 @@ namespace TRANSLATION3
                                 break;
                             case Keys.OemQuotes:
                                 code = "\"";
+                                break;
+                            case Keys.OemSemicolon:
+                                code = ":";
                                 break;
                         }
                     }

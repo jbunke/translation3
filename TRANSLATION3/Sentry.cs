@@ -301,7 +301,10 @@ namespace TRANSLATION3
                             break;
                         case Type.DECAY:
                             if (platform.getWidth() > 20)
+                            {
                                 platform.changeWidth(-speed);
+                                platform.moveX(direction * (-speed / 2));
+                            }
                             break;
                         case Type.SPREAD:
                             if (platform.getWidth() < 500)

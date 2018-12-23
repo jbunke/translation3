@@ -106,6 +106,12 @@ namespace TRANSLATION3
                     // TELEPORT
                     isTele = true;
                 }
+
+                if (e.KeyCode == controls[8])
+                {
+                    // PAUSE
+                    level.pause();
+                }
             } else
             {
                 // KEY-UP
@@ -148,12 +154,6 @@ namespace TRANSLATION3
                 {
                     // ZOOM
                     level.getCamera().switchZoom();
-                }
-
-                if (e.KeyCode == controls[8])
-                {
-                    // PAUSE
-                    level.pause();
                 }
             }
         }
