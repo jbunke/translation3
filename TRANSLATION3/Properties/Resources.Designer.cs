@@ -510,6 +510,31 @@ namespace TRANSLATION3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 7 6
+        ///As Above, So Below
+        ///1000 1000 200
+        ///1000 800 200
+        ///1000 600 200
+        ///1000 400 200
+        ///1000 1200 200
+        ///1000 1400 200
+        ///1000 1600 200
+        ///The clue is in the order
+        ///FLEE 6 RANDOM 1
+        ///FLEE 6 RANDOM 4
+        ///FLEE 6 RANDOM 5
+        ///FLEE 6 RANDOM 6
+        ///FLEE 6 RANDOM 3
+        ///FLEE 6 RANDOM 2
+        ///.
+        /// </summary>
+        internal static string main14 {
+            get {
+                return ResourceManager.GetString("main14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 10 3
         ///Jules Verne
         ///1000 1000 150
@@ -531,6 +556,27 @@ namespace TRANSLATION3.Properties {
         internal static string main15 {
             get {
                 return ResourceManager.GetString("main15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5 4
+        ///Splitsville
+        ///1000 1000 25
+        ///1000 800 25
+        ///1000 1200 25
+        ///1200 1000 25
+        ///800 1000 25
+        ///&apos;Esposas&apos;
+        ///GOD 14 PUSH 1
+        ///GOD -14 RANDOM 2
+        ///MOVE 14 RANDOM 4
+        ///MOVE -14 RANDOM 3
+        ///.
+        /// </summary>
+        internal static string main16 {
+            get {
+                return ResourceManager.GetString("main16", resourceCulture);
             }
         }
         

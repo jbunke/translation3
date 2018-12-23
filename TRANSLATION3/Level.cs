@@ -131,7 +131,8 @@ namespace TRANSLATION3
             }
 
             return new Level(players, platforms, sentries, key,
-                main.getSettings().getFollowMode(), main);
+                main.getSettings().getFollowMode(), main, 
+                editor.name, editor.note);
         }
 
         public void update()

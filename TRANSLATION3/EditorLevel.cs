@@ -51,6 +51,26 @@ namespace TRANSLATION3
             return new EditorLevel(main);
         }
 
+        // Public helpers
+        public void addToName(String s)
+        {
+            this.name += s;
+        }
+
+        public void addToNote(String s) {
+            this.note += s;
+        }
+
+        public void backspaceName() {
+            if (name.Length > 0)
+                name = name.Substring(0, name.Length - 1);
+        }
+
+        public void backspaceNote() {
+            if (note.Length > 0)
+                note = note.Substring(0, note.Length - 1);
+        }
+
         private void hovering()
         {
             Point l = mover.getLocation();
@@ -270,17 +290,17 @@ namespace TRANSLATION3
 
             // TEST
             addHUDElement(new HUDElement(new Point(640, 670),
-                HUDElement.Alignment.CENTER, 1, "<Enter> TEST",
+                HUDElement.Alignment.CENTER, 1, "<T> TEST",
                 Font.VIGILANT, 2, Color.FromArgb(255, 0, 0), false));
 
             // RESET
             addHUDElement(new HUDElement(new Point(960, 670),
-                HUDElement.Alignment.CENTER, 1, "<Delete> RESET",
+                HUDElement.Alignment.CENTER, 1, "<R> RESET",
                 Font.VIGILANT, 2, Color.FromArgb(255, 0, 0), false));
 
             // Finish
             addHUDElement(new HUDElement(new Point(320, 670),
-                HUDElement.Alignment.CENTER, 1, "<TODO> FINISH",
+                HUDElement.Alignment.CENTER, 1, "<F> FINISH",
                 Font.VIGILANT, 2, Color.FromArgb(255, 0, 0), false));
         }
 
@@ -418,6 +438,30 @@ namespace TRANSLATION3
                 g.FillRectangle(new SolidBrush(
                     crossHairColor),
                     0, 359, 1280, 2);
+                g.FillRectangle(new SolidBrush(
+                    crossHairColor),
+                    539, 340, 2, 40);
+                g.FillRectangle(new SolidBrush(
+                    crossHairColor),
+                    439, 340, 2, 40);
+                g.FillRectangle(new SolidBrush(
+                    crossHairColor),
+                    739, 340, 2, 40);
+                g.FillRectangle(new SolidBrush(
+                    crossHairColor),
+                    839, 340, 2, 40);
+                g.FillRectangle(new SolidBrush(
+                    crossHairColor),
+                    620, 159, 40, 2);
+                g.FillRectangle(new SolidBrush(
+                    crossHairColor),
+                    620, 259, 40, 2);
+                g.FillRectangle(new SolidBrush(
+                    crossHairColor),
+                    620, 459, 40, 2);
+                g.FillRectangle(new SolidBrush(
+                    crossHairColor),
+                    620, 559, 40, 2);
 
                 // HUD Elements
                 foreach (HUDElement element in elements)
@@ -492,12 +536,16 @@ namespace TRANSLATION3
             if (!down)
             {
                 // Test
-                if (e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.T)
                 {
                     main.playEditorLevel();
-                } else if (e.KeyCode == Keys.Delete)
+                } else if (e.KeyCode == Keys.R)
                 {
                     main.resetEditor();
+                } else if (e.KeyCode == Keys.F)
+                {
+                    main.setMode(Mode.MENU);
+                    main.setMenuFrame("editor-level-finish");
                 }
 
                 switch (selectionMode)

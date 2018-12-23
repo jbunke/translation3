@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace TRANSLATION3
         main main;
         bool[] selVector;
         bool[] lastSelVector;
+        bool isTyping;
 
         public enum Cause
         {
@@ -66,6 +68,34 @@ namespace TRANSLATION3
                         MenuObject.Task.SET_MODE, "EDITOR", main),
                     new MenuObject(true, "BACK", 4, new Point(640, 660),
                         MenuObject.Task.SET_MENU, "main", main)};
+                    return new MenuFrame(menuObjs, main);
+                case "editor-level-finish":
+                    lc = 320;
+                    rc = 960;
+                    mid = 360;
+                    unit = 100;
+                    offset = 20;
+                    menuObjs = new MenuObject[] {
+                    new MenuObject(false, "LEVEL INFO", 8, new Point(640, 100),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "LEVEL NAME:", 4, new Point(640,
+                                   mid - unit - offset),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "\"" + main.getEditor().getName() + "\"",
+                        4, new Point(640, mid - unit + offset),
+                        MenuObject.Task.TYPE, "setlevelname", main),
+                    new MenuObject(false, "LEVEL NOTE:", 4, new Point(640,
+                                   mid - offset),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "\"" + main.getEditor().getNote() + "\"",
+                        2, new Point(640, mid + offset),
+                        MenuObject.Task.TYPE, "setlevelnote", main),
+                    new MenuObject(true, "SAVE TO FILE", 4, new Point(lc, 660),
+                        MenuObject.Task.SAVE_EDITOR, null, main),
+                    new MenuObject(true, "FINISH", 4, new Point(640, 660),
+                        MenuObject.Task.SET_MENU, "my-content", main),
+                    new MenuObject(true, "BACK", 4, new Point(rc, 660),
+                        MenuObject.Task.SET_MODE, "EDITOR", main)};
                     return new MenuFrame(menuObjs, main);
                 case "pause":
                     String levelName = main.getLevel().getName().ToUpper();
@@ -235,6 +265,11 @@ namespace TRANSLATION3
             selVector = new bool[objects.Length];
             lastSelVector = new bool[objects.Length];
 
+            foreach (MenuObject o in this.objects)
+            {
+                o.setFrame(this);
+            }
+
             bool assignedSel = false;
 
             for (int i = 0; i < objects.Length & !assignedSel; i++)
@@ -249,6 +284,18 @@ namespace TRANSLATION3
             }
         }
 
+        public void keyHandler(KeyEventArgs k)
+        {
+            Debug.Assert(isTyping);
+            for (int i = 0; i < selVector.Length; i++)
+            {
+                if (selVector[i])
+                {
+                    objects[i].keyHandler(k);
+                }
+            }
+        }
+
         public void actionHandler()
         {
             for (int i = 0; i < selVector.Length; i++)
@@ -258,6 +305,31 @@ namespace TRANSLATION3
                     objects[i].doTask();
                 }
             }
+        }
+
+        public bool[] getSelectionVector()
+        {
+            return selVector;
+        }
+
+        public void setSelectionVector(bool[] selVector)
+        {
+            this.selVector = selVector;
+
+            for (int i = 0; i < selVector.Length; i++)
+            {
+                objects[i].setSelect(selVector[i]);
+            }
+        }
+
+        public bool getIsTyping()
+        {
+            return isTyping;
+        }
+
+        public void setIsTyping(bool isTyping)
+        {
+            this.isTyping = isTyping;
         }
 
         public bool update(Cause cause, MouseEventArgs m, KeyEventArgs k)

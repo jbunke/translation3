@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tmr = new System.Windows.Forms.Timer(this.components);
+            this.saveLevels = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +52,10 @@
             this.tmr.Enabled = true;
             this.tmr.Interval = 10;
             this.tmr.Tick += new System.EventHandler(this.tmr_Tick);
+            // 
+            // saveLevels
+            // 
+            this.saveLevels.FileOk += new System.ComponentModel.CancelEventHandler(this.saveLevels_FileOk);
             // 
             // main
             // 
@@ -76,6 +81,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer tmr;
+        private System.Windows.Forms.SaveFileDialog saveLevels;
     }
 }
 

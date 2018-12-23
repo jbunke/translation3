@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,7 +82,7 @@ namespace TRANSLATION3
             //campaign.Add("main76");
             //campaign.Add("main77");
             //campaign.Add("main74");
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < 17; i++)
             {
                 campaign.Add("main" + i);
                 //campaign.Add("classic" + i);
@@ -115,7 +116,8 @@ namespace TRANSLATION3
                     }
                     break;
                 case Mode.MENU:
-                    if (menuFrame.update(MenuFrame.Cause.MOUSE_MOVE, e, null))
+                    if (!menuFrame.getIsTyping() && 
+                        menuFrame.update(MenuFrame.Cause.MOUSE_MOVE, e, null))
                     {
                         canvas = menuFrame.render();
                     }
@@ -139,19 +141,6 @@ namespace TRANSLATION3
                 case Mode.EDITOR:
                     editor.keyHandler(e, true);
                     break;
-            }
-        }
-
-        private void main_KeyUp(object sender, KeyEventArgs e)
-        {
-            switch (mode)
-            {
-                case Mode.GAME:
-                    level.keyHandler(e, false);
-                    break;
-                case Mode.EDITOR:
-                    editor.keyHandler(e, false);
-                    break;
                 case Mode.PAUSE:
                     if (e.KeyCode == gameSettings.getControls()[8])
                     {
@@ -173,12 +162,14 @@ namespace TRANSLATION3
                     }
                     break;
                 case Mode.MENU:
-                    if (e.KeyCode == gameSettings.getControls()[6] ||
-                        e.KeyCode == Keys.Enter)
+                    if (menuFrame.getIsTyping())
+                    {
+                        menuFrame.keyHandler(e);
+                    } else if (e.KeyCode == Keys.Enter ||
+                        e.KeyCode == gameSettings.getControls()[6])
                     {
                         menuFrame.actionHandler();
-                    }
-                    else
+                    } else
                     {
                         if (menuFrame.update(MenuFrame.Cause.KEY_PRESS, null, e))
                         {
@@ -187,6 +178,19 @@ namespace TRANSLATION3
                         }
                         break;
                     }
+                    break;
+            }
+        }
+
+        private void main_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (mode)
+            {
+                case Mode.GAME:
+                    level.keyHandler(e, false);
+                    break;
+                case Mode.EDITOR:
+                    editor.keyHandler(e, false);
                     break;
             }
         }
@@ -216,6 +220,46 @@ namespace TRANSLATION3
                     }
                     break;
             }
+        }
+
+        private void saveLevels_FileOk(object sender, CancelEventArgs e)
+        {
+            String filepath = saveLevels.FileName;
+
+            if (!filepath.Contains(".txt"))
+                filepath += ".txt";
+
+            using (StreamWriter sw = new StreamWriter(filepath))
+            {
+                List<Platform> platforms = editor.getPlatforms();
+                List<Sentry> sentries = editor.getSentries();
+                List<Player> players = editor.getPlayers();
+
+                sw.WriteLine(platforms.Count + " " + sentries.Count);
+                sw.WriteLine(editor.getName());
+
+                foreach (Platform p in platforms)
+                {
+                    sw.WriteLine(p.getLocation().X + " " +
+                        p.getLocation().Y + " " + p.getWidth());
+                }
+
+                sw.WriteLine(editor.getNote());
+
+                foreach (Sentry s in sentries)
+                {
+                    sw.WriteLine(s.getType() + " " +
+                        (s.getDirection() * s.getSpeed()) + " " +
+                        s.getSecondary() + " " +
+                        platforms.IndexOf(s.getPlatform()));
+                }
+
+            }
+        }
+
+        public void launchSaveEditor()
+        {
+            saveLevels.ShowDialog();
         }
 
         public void applySettings()
@@ -308,6 +352,11 @@ namespace TRANSLATION3
             return level;
         }
 
+        public EditorLevel getEditor()
+        {
+            return editor;
+        }
+
         public GameSettings getSettings()
         {
             return gameSettings;
@@ -341,12 +390,21 @@ namespace TRANSLATION3
         public void setMenuFrame(String s)
         {
             menuScreen = s;
-            refreshMenuFrame();
+
+            menuFrame = MenuFrame.fromString(menuScreen, this);
+            canvas = menuFrame.render();
+            pictureBox1.Image = canvas;
         }
 
         public void refreshMenuFrame()
         {
+            bool[] selVector = menuFrame.getSelectionVector();
+            bool isTyping = menuFrame.getIsTyping();
+
             menuFrame = MenuFrame.fromString(menuScreen, this);
+
+            menuFrame.setSelectionVector(selVector);
+            menuFrame.setIsTyping(isTyping);
 
             canvas = menuFrame.render();
             pictureBox1.Image = canvas;
@@ -355,12 +413,21 @@ namespace TRANSLATION3
         public void setPauseFrame(String s)
         {
             pauseScreen = s;
-            refreshPauseFrame();
+
+            pauseFrame = MenuFrame.fromString(pauseScreen, this);
+            canvas = pauseFrame.render();
+            pictureBox1.Image = canvas;
         }
 
         public void refreshPauseFrame()
         {
+            bool[] selVector = pauseFrame.getSelectionVector();
+            bool isTyping = pauseFrame.getIsTyping();
+
             pauseFrame = MenuFrame.fromString(pauseScreen, this);
+
+            pauseFrame.setSelectionVector(selVector);
+            pauseFrame.setIsTyping(isTyping);
 
             canvas = pauseFrame.render();
             pictureBox1.Image = canvas;
