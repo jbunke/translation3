@@ -98,7 +98,9 @@ namespace TRANSLATION3
                         MenuObject.Task.UNPAUSE, null, main),
                     new MenuObject(true, "SETTINGS", 4, new Point(640, 360),
                         MenuObject.Task.SET_PAUSE, "settings-pause", main),
-                    new MenuObject(true, "QUIT", 4, new Point(640, 460),
+                    new MenuObject(true, "MAIN MENU", 4, new Point(640, 460),
+                        MenuObject.Task.SET_MENU, "main", main),
+                    new MenuObject(true, "QUIT", 4, new Point(640, 560),
                         MenuObject.Task.SET_PAUSE, "are-you-sure", main) };
                     return new MenuFrame(pauseObjs, main);
                 case "are-you-sure":

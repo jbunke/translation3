@@ -244,6 +244,11 @@ namespace TRANSLATION3
             }
         }
 
+        public void resetEditor()
+        {
+            editor = EditorLevel.newEditor(this);
+        }
+
         public void playEditorLevel()
         {
             campaignIndex = 0;

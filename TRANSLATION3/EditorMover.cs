@@ -31,22 +31,22 @@ namespace TRANSLATION3
         {
             if (isLeft)
             {
-                location.X -= 8;
+                location.X -= 10;
             }
 
             if (isRight)
             {
-                location.X += 8;
+                location.X += 10;
             }
 
             if (isDown)
             {
-                location.Y += 8;
+                location.Y += 10;
             }
 
             if (isUp)
             {
-                location.Y -= 8;
+                location.Y -= 10;
             }
         }
 

@@ -40,7 +40,7 @@ namespace TRANSLATION3
 
         public EditorLevel(main main) : base(main)
         {
-            setCamera(main.getSettings().getFollowMode());
+            setCamera(Camera.FollowMode.GLUED);
             mover = new EditorMover(main, this);
             camera.setTarget(mover);
             controls = main.getSettings().getControls();
@@ -58,8 +58,8 @@ namespace TRANSLATION3
             HasLocation hovered = null;
 
             // Player check
-            if (Math.Abs(l.X - players.ElementAt(0).getLocation().X) < 10 &&
-                Math.Abs(l.Y - players.ElementAt(0).getLocation().Y) < 10)
+            if (Math.Abs(l.X - players.ElementAt(0).getLocation().X) <= 10 &&
+                Math.Abs(l.Y - players.ElementAt(0).getLocation().Y) <= 10)
             {
                 found = true;
                 hovered = players.ElementAt(0);
@@ -71,7 +71,7 @@ namespace TRANSLATION3
                 Point p = platforms.ElementAt(i).getLocation();
                 int w = platforms.ElementAt(i).getWidth() / 2;
 
-                if (Math.Abs(l.X - p.X) < w && Math.Abs(l.Y - p.Y) < 10)
+                if (Math.Abs(l.X - p.X) < w && Math.Abs(l.Y - p.Y) <= 10)
                 {
                     hovered = platforms.ElementAt(i);
                     found = true;
@@ -83,8 +83,8 @@ namespace TRANSLATION3
             {
                 foreach (Sentry s in sentries)
                 {
-                    if (Math.Abs(l.X - s.getLocation().X) < 10 &&
-                        Math.Abs(l.Y - s.getLocation().Y) < 10)
+                    if (Math.Abs(l.X - s.getLocation().X) <= 10 &&
+                        Math.Abs(l.Y - s.getLocation().Y) <= 10)
                     {
                         hovered = s;
                         found = true;
@@ -112,10 +112,11 @@ namespace TRANSLATION3
                         updateSelectionContext(
                             "<" + controls[6] + "> to select - SENTRY " +
                             (sentries.IndexOf(s) + 1), 
-                            new string[] { "TYPE: " + s.getType(),
+                            new string[] { "TYPE: " + Sentry.read(s.getType()),
                                 "SPEED: " + s.getSpeed(),
                                 "DIRECTION: " + s.interpretDirection(),
-                                "SECONDARY TYPE: " + s.getSecondary() });
+                                "SECONDARY TYPE: " +
+                                Sentry.read(s.getSecondary()) });
                     }
 
                     if (hovered is Platform)
@@ -267,9 +268,19 @@ namespace TRANSLATION3
                     break;
             }
 
-            // FINISH
+            // TEST
             addHUDElement(new HUDElement(new Point(640, 670),
-                HUDElement.Alignment.CENTER, 1, "<Enter> FINISH",
+                HUDElement.Alignment.CENTER, 1, "<Enter> TEST",
+                Font.VIGILANT, 2, Color.FromArgb(255, 0, 0), false));
+
+            // RESET
+            addHUDElement(new HUDElement(new Point(960, 670),
+                HUDElement.Alignment.CENTER, 1, "<Delete> RESET",
+                Font.VIGILANT, 2, Color.FromArgb(255, 0, 0), false));
+
+            // Finish
+            addHUDElement(new HUDElement(new Point(320, 670),
+                HUDElement.Alignment.CENTER, 1, "<TODO> FINISH",
                 Font.VIGILANT, 2, Color.FromArgb(255, 0, 0), false));
         }
 
@@ -480,10 +491,13 @@ namespace TRANSLATION3
             // TODO
             if (!down)
             {
-                // Finish
+                // Test
                 if (e.KeyCode == Keys.Enter)
                 {
                     main.playEditorLevel();
+                } else if (e.KeyCode == Keys.Delete)
+                {
+                    main.resetEditor();
                 }
 
                 switch (selectionMode)
@@ -604,10 +618,10 @@ namespace TRANSLATION3
             {
                 Sentry s = (Sentry)selected;
 
-                selectionStats = new string[] { "TYPE: " + s.getType(),
+                selectionStats = new string[] { "TYPE: " + Sentry.read(s.getType()),
                     "SPEED: " + s.getSpeed(),
                     "DIRECTION: " + s.interpretDirection(),
-                    "SECONDARY TYPE: " + s.getSecondary() };
+                    "SECONDARY TYPE: " + Sentry.read(s.getSecondary()) };
             } else if (selected is Platform)
             {
                 Platform p = (Platform)selected;

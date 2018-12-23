@@ -74,6 +74,49 @@ namespace TRANSLATION3
             this.children = new List<Sentry>();
         }
 
+        public static String read(Sentry.Type s)
+        {
+            switch (s)
+            {
+                case Type.DECAY:
+                    return "PLATFORM DECAYING";
+                case Type.DROP:
+                    return "DROPPING";
+                case Type.EXPAND:
+                    return "STAGE EXPANDING";
+                case Type.FLEE:
+                    return "FLEEING";
+                case Type.GOD:
+                    return "STAGE FLIPPING";
+                case Type.GRAV_DOUBLE:
+                    return "GRAVITY DOUBLING";
+                case Type.GRAV_FLIP:
+                    return "GRAVITY FLIPPING";
+                case Type.GRAV_INC:
+                    return "GRAVITY INCREASING";
+                case Type.GRAV_RED:
+                    return "GRAVITY REDUCING";
+                case Type.HORZ_MAGNET:
+                    return "HORIZONTAL MAGNET";
+                case Type.MOVE:
+                    return "PLATFORM MOVING";
+                case Type.NECROMANCER:
+                    return "NECROMANCER";
+                case Type.PULL:
+                    return "PULLING";
+                case Type.PUSH:
+                    return "PUSHING";
+                case Type.SHOVE:
+                    return "SHOVING";
+                case Type.SPAWN:
+                    return "SPAWNER";
+                case Type.SPREAD:
+                    return "PLATFORM SPREADING";
+                default:
+                    return s.ToString();
+            }
+        }
+
         public void setLevel(Level level)
         {
             this.level = level;
