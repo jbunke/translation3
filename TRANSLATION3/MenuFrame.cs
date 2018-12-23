@@ -143,12 +143,8 @@ namespace TRANSLATION3
                     new MenuObject(true, "YES", 4, new Point(740, 410),
                         MenuObject.Task.CLOSE, null, main) };
                     return new MenuFrame(pauseObjs, main);
-                case "settings-main":
-                    GameSettings stgs = main.getSettings();
-                    // TODO
-                    return new MenuFrame(null, main);
                 case "settings-pause":
-                    stgs = main.getSettings();
+                    GameSettings stgs = main.getSettings();
                     mid = 360;
                     unit = 80;
                     offset = 30;
@@ -254,7 +250,16 @@ namespace TRANSLATION3
                         new Point(rc, 520), MenuObject.Task.NULL, null, main) };
                     return new MenuFrame(pauseObjs, main);
                 default:
-                    return new MenuFrame(new MenuObject[] { }, main);
+                    return new MenuFrame(new MenuObject[] {
+                    new MenuObject(false, "THIS DOES NOT EXIST",
+                        8, new Point(640, 100),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(false, "(Yet.)",
+                        16, new Point(640, 360),
+                        MenuObject.Task.NULL, null, main),
+                    new MenuObject(true, "RETURN TO MAIN MENU",
+                        4, new Point(640, 660),
+                        MenuObject.Task.SET_MENU, "main", main)}, main);
             }
         }
         
